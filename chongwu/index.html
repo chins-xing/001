@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宠物百科 - 萌宠世界</title>
+    <link rel="stylesheet" href="yang/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">宠物百科</h1>
+            <nav class="nav">
+                <a href="index.html" class="nav-link active">首页</a>
+                <a href="wiki.html" class="nav-link">百科</a>
+                <a href="dashboard.html" class="nav-link">数据大屏</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <h2 class="section-title">萌宠图集</h2>
+            <div class="carousel" id="carousel">
+                <div class="carousel-track" id="carouselTrack"></div>
+                <button class="carousel-btn prev-btn" id="prevBtn">&lt;</button>
+                <button class="carousel-btn next-btn" id="nextBtn">&gt;</button>
+                <div class="carousel-dots" id="carouselDots"></div>
+            </div>
+        </div>
+
+        <div class="container">
+            <h2 class="section-title">宠物品种</h2>
+            <div class="pets-grid" id="petsGrid"></div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 宠物百科 - 让爱宠生活更美好</p>
+        </div>
+    </footer>
+
+    <script src="ben/app.js"></script>
+</body>
+</html>

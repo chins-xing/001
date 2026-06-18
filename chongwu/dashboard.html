@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宠物百科 - 数据大屏</title>
+    <link rel="stylesheet" href="yang/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+</head>
+<body>
+    <header class="dashboard-header">
+        <h1 class="dashboard-title">宠物数据大屏</h1>
+        <nav class="dashboard-nav">
+            <a href="index.html" class="nav-link">首页</a>
+            <a href="wiki.html" class="nav-link">百科</a>
+            <a href="dashboard.html" class="nav-link active">数据大屏</a>
+        </nav>
+    </header>
+
+    <main class="dashboard-main">
+        <div class="dashboard-grid">
+            <div class="chart-card">
+                <h3 class="chart-title">宠物品种分布</h3>
+                <div class="chart-container" id="speciesChart"></div>
+            </div>
+
+            <div class="chart-card">
+                <h3 class="chart-title">热门品种排行</h3>
+                <div class="chart-container" id="breedChart"></div>
+            </div>
+
+            <div class="chart-card">
+                <h3 class="chart-title">养护打卡统计</h3>
+                <div class="chart-container" id="checkinChart"></div>
+            </div>
+
+            <div class="chart-card">
+                <h3 class="chart-title">健康指标</h3>
+                <div class="health-grid" id="healthGrid"></div>
+            </div>
+
+            <div class="chart-card full-width">
+                <h3 class="chart-title">宠物成长趋势</h3>
+                <div class="filter-bar">
+                    <label for="petTypeFilter">宠物类型：</label>
+                    <select id="petTypeFilter">
+                        <option value="all">全部</option>
+                        <option value="狗">狗</option>
+                        <option value="猫">猫</option>
+                        <option value="仓鼠">仓鼠</option>
+                        <option value="兔子">兔子</option>
+                    </select>
+                </div>
+                <div class="chart-container" id="growthChart"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="dashboard-footer">
+        <p>&copy; 2024 宠物百科 - 数据大屏</p>
+    </footer>
+
+    <script src="ben/dashboard.js"></script>
+</body>
+</html>

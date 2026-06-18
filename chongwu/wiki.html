@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宠物百科 - 知识百科</title>
+    <link rel="stylesheet" href="yang/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">宠物百科</h1>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">首页</a>
+                <a href="wiki.html" class="nav-link active">百科</a>
+                <a href="dashboard.html" class="nav-link">数据大屏</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main wiki-main">
+        <div class="container">
+            <div class="wiki-sidebar">
+                <h3 class="sidebar-title">宠物列表</h3>
+                <ul class="pet-list" id="petList"></ul>
+            </div>
+
+            <div class="wiki-content">
+                <div class="wiki-detail" id="wikiDetail">
+                    <div class="wiki-placeholder">
+                        <p>请从左侧选择一个宠物查看详情</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 宠物百科 - 让爱宠生活更美好</p>
+        </div>
+    </footer>
+
+    <script src="ben/wiki.js"></script>
+</body>
+</html>

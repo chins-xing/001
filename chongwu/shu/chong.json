@@ -1,0 +1,82 @@
+{
+  "pets": [
+    {
+      "id": "pet_001",
+      "name": "金毛寻回犬",
+      "category": "狗",
+      "image_key": "pet_001",
+      "description": "金毛寻回犬是最常见的家养犬之一，性格温顺、聪明忠诚，对小孩特别友善，是非常受欢迎的家庭伴侣犬。",
+      "lifespan": "10-12年",
+      "weight": "25-34kg",
+      "origin": "英国苏格兰",
+      "traits": ["温顺", "聪明", "忠诚", "活泼"],
+      "feeding_guide": "wei/c001.json",
+      "grooming_guide": "xi/c001.json"
+    },
+    {
+      "id": "pet_002",
+      "name": "波斯猫",
+      "category": "猫",
+      "image_key": "pet_002",
+      "description": "波斯猫是最古老、最纯正的品种之一，以华丽的被毛、扁平的面部和温文尔雅的气质著称，被誉为'猫中王子'。",
+      "lifespan": "12-17年",
+      "weight": "3-5kg",
+      "origin": "伊朗（波斯）",
+      "traits": ["温文尔雅", "安静", "高贵", "粘人"],
+      "feeding_guide": "wei/c002.json",
+      "grooming_guide": "xi/c002.json"
+    },
+    {
+      "id": "pet_003",
+      "name": "柯基犬",
+      "category": "狗",
+      "image_key": "pet_003",
+      "description": "威尔士柯基犬体型小巧但结实，以短腿和肥臀闻名，性格机警、友善，曾是英国女王的挚爱犬种。",
+      "lifespan": "12-15年",
+      "weight": "10-14kg",
+      "origin": "英国威尔士",
+      "traits": ["机警", "友善", "勇敢", "活泼"],
+      "feeding_guide": "wei/empty.json",
+      "grooming_guide": "xi/empty.json"
+    },
+    {
+      "id": "pet_004",
+      "name": "英国短毛猫",
+      "category": "猫",
+      "image_key": "pet_004",
+      "description": "英国短毛猫体型圆胖，四肢粗短，被毛短而密，以蓝色最为经典。性格温和、适应力强，是理想的室内伴侣猫。",
+      "lifespan": "12-20年",
+      "weight": "4-8kg",
+      "origin": "英国",
+      "traits": ["温和", "独立", "适应力强", "慵懒"],
+      "feeding_guide": "wei/empty.json",
+      "grooming_guide": "xi/empty.json"
+    },
+    {
+      "id": "pet_005",
+      "name": "西伯利亚哈士奇",
+      "category": "狗",
+      "image_key": "pet_005",
+      "description": "哈士奇拥有狼一般的外表和湛蓝的眼睛，精力旺盛、性格友好，是天生的运动健将，也是著名的'表情包'犬种。",
+      "lifespan": "12-14年",
+      "weight": "16-27kg",
+      "origin": "西伯利亚",
+      "traits": ["精力旺盛", "友好", "独立", "倔强"],
+      "feeding_guide": "wei/empty.json",
+      "grooming_guide": "xi/empty.json"
+    },
+    {
+      "id": "pet_006",
+      "name": "布偶猫",
+      "category": "猫",
+      "image_key": "pet_006",
+      "description": "布偶猫体型大、被毛柔软如丝，蓝色大眼睛极具魅力。性格极其温顺，抱起来像布偶一样放松，因此得名。",
+      "lifespan": "12-17年",
+      "weight": "4-9kg",
+      "origin": "美国",
+      "traits": ["温顺", "粘人", "安静", "友善"],
+      "feeding_guide": "wei/empty.json",
+      "grooming_guide": "xi/empty.json"
+    }
+  ]
+}

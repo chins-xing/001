@@ -1,0 +1,166 @@
+/* ===== 宠物百科 简单风格 ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    --blue-700: #1565c0; --blue-500: #1a73e8; --blue-300: #4a90d9;
+    --blue-100: #bbdefb; --blue-50: #e3f2fd;
+    --text-primary: #1a1a2e; --text-secondary: #5f6368; --text-light: #9aa0a6;
+    --bg-body: #f5f8fc; --bg-card: #fff; --bg-light: #e8f0fe;
+    --radius: 6px;
+}
+
+body {
+    font-family: -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg-body); color: var(--text-primary); line-height: 1.6;
+}
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+/* ===== 头部导航 ===== */
+.header {
+    background: var(--blue-700); color: #fff; position: sticky; top: 0; z-index: 100;
+}
+.header .container {
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem; padding: 1rem 24px;
+}
+.logo { font-size: 1.4rem; font-weight: 700; }
+.nav { display: flex; gap: 0.25rem; }
+
+.nav-link {
+    color: rgba(255,255,255,0.8); text-decoration: none;
+    padding: 0.4rem 1rem; border-radius: var(--radius); font-size: 0.9rem;
+}
+.nav-link:hover { color: #fff; background: rgba(255,255,255,0.12); }
+.nav-link.active { color: #fff; background: rgba(255,255,255,0.18); }
+
+/* ===== 主体 ===== */
+.main { min-height: calc(100vh - 160px); padding: 2rem 0; }
+
+.section-title {
+    text-align: center; font-size: 1.6rem; font-weight: 700;
+    margin-bottom: 2rem; color: var(--blue-700);
+    padding-bottom: 0.6rem; border-bottom: 2px solid var(--blue-100);
+}
+
+/* ===== 轮播 ===== */
+.carousel {
+    position: relative; max-width: 800px; margin: 0 auto 2.5rem;
+    overflow: hidden; border-radius: var(--radius);
+}
+.carousel-track { display: flex; transition: transform 0.5s; }
+
+.carousel-slide {
+    min-width: 100%; height: 380px; display: flex; align-items: flex-end;
+    padding: 2rem; color: #fff;
+    background: var(--blue-700) center/cover no-repeat;
+}
+.carousel-slide h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.3rem; }
+.carousel-slide p { font-size: 0.9rem; opacity: 0.85; }
+
+.carousel-btn {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: #fff; color: var(--blue-500); border: none;
+    width: 36px; height: 36px; border-radius: 50%;
+    cursor: pointer; font-size: 1.1rem; font-weight: bold;
+}
+.carousel-btn:hover { background: var(--blue-50); }
+.prev-btn { left: 0.8rem; }
+.next-btn { right: 0.8rem; }
+
+.carousel-dots {
+    position: absolute; bottom: 0.8rem; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 0.4rem; z-index: 2;
+}
+.carousel-dot {
+    width: 24px; height: 3px; border-radius: 2px;
+    background: rgba(255,255,255,0.35); cursor: pointer;
+}
+.carousel-dot.active { background: #fff; width: 32px; }
+
+/* ===== 品种卡片 ===== */
+.pets-grid { display: flex; flex-wrap: wrap; gap: 1.25rem; justify-content: center; }
+
+.pet-card, .wiki-sidebar, .wiki-content {
+    background: var(--bg-card); border-radius: var(--radius);
+    border: 1px solid rgba(26,115,232,0.06);
+}
+
+.pet-card { overflow: hidden; width: 280px; cursor: pointer; }
+
+.pet-avatar {
+    width: 110px; height: 110px; margin: 1.5rem auto 1rem;
+    background: center/cover no-repeat; border-radius: 50%;
+    border: 3px solid var(--blue-100);
+}
+.pet-info { padding: 0 1.25rem 1.25rem; text-align: center; }
+.pet-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--blue-700); }
+
+.pet-desc {
+    font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;
+    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+
+/* ===== 页脚 ===== */
+.footer { background: var(--blue-700); color: #fff; text-align: center; padding: 1.5rem 0; margin-top: 2.5rem; }
+.footer p { opacity: 0.75; font-size: 0.85rem; }
+
+/* ===== 百科页面 ===== */
+.wiki-main .container { display: flex; gap: 2rem; align-items: flex-start; }
+
+.wiki-sidebar {
+    width: 220px; padding: 1.25rem; position: sticky; top: 80px; flex-shrink: 0;
+}
+.sidebar-title {
+    font-size: 1rem; font-weight: 700; margin-bottom: 1rem;
+    color: var(--blue-700); padding-bottom: 0.6rem; border-bottom: 2px solid var(--bg-light);
+}
+.pet-list { list-style: none; }
+.pet-list li {
+    padding: 0.6rem 0.8rem; margin-bottom: 0.2rem; border-radius: var(--radius);
+    cursor: pointer; font-size: 0.9rem; color: var(--text-secondary);
+}
+.pet-list li:hover { background: var(--bg-light); color: var(--blue-500); }
+.pet-list li.active { background: var(--blue-500); color: #fff; font-weight: 600; }
+
+.wiki-content { flex: 1; padding: 1.75rem; min-height: 400px; }
+.wiki-placeholder { text-align: center; color: var(--text-light); padding: 3rem 2rem; }
+
+.wiki-detail h2 {
+    color: var(--blue-700); font-size: 1.4rem; margin-bottom: 0.8rem;
+    padding-bottom: 0.6rem; border-bottom: 2px solid var(--bg-light);
+}
+.wiki-detail h3 { color: var(--blue-500); font-size: 1rem; margin: 1.2rem 0 0.8rem; font-weight: 600; }
+
+.wiki-detail .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.8rem; margin: 1rem 0; }
+.wiki-detail .info-item { background: var(--bg-body); padding: 0.8rem 1rem; border-radius: var(--radius); border-left: 3px solid var(--blue-300); }
+.wiki-detail .info-label { font-size: 0.78rem; color: var(--text-light); margin-bottom: 0.2rem; }
+.wiki-detail .info-value { font-size: 1rem; font-weight: 700; color: var(--blue-700); }
+.wiki-detail .traits { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.8rem 0; }
+.wiki-detail .trait-tag { background: var(--bg-light); color: var(--blue-500); padding: 0.25rem 0.8rem; border-radius: 4px; font-size: 0.82rem; font-weight: 500; }
+
+.wiki-detail .tab-nav { display: flex; margin: 1.5rem 0 1rem; background: var(--bg-body); border-radius: var(--radius); padding: 3px; }
+.wiki-detail .tab-btn { padding: 0.6rem 1.2rem; background: transparent; border: none; cursor: pointer; font-size: 0.9rem; font-weight: 500; color: var(--text-secondary); border-radius: var(--radius); flex: 1; }
+.wiki-detail .tab-btn:hover { color: var(--blue-500); }
+.wiki-detail .tab-btn.active { background: #fff; color: var(--blue-700); font-weight: 600; }
+.wiki-detail .tab-content { display: none; }
+.wiki-detail .tab-content.active { display: block; }
+
+.wiki-detail .step-list { list-style: none; }
+.wiki-detail .step-item { background: var(--bg-body); padding: 1rem 1.25rem; margin-bottom: 0.6rem; border-radius: var(--radius); border-left: 3px solid var(--blue-300); }
+.wiki-detail .step-header { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.2rem; }
+.wiki-detail .step-number { background: var(--blue-500); color: #fff; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; border-radius: 4px; }
+.wiki-detail .step-title { font-size: 0.95rem; font-weight: 600; color: var(--text-primary); }
+.wiki-detail .step-duration { color: var(--text-light); font-size: 0.82rem; margin-left: auto; }
+
+/* ===== 响应式 ===== */
+@media (max-width: 768px) {
+    .header .container { flex-direction: column; padding: 0.8rem 16px; }
+    .nav { order: 3; width: 100%; justify-content: center; }
+    .wiki-main .container { flex-direction: column; }
+    .wiki-sidebar { width: 100%; position: static; }
+    .pets-grid { gap: 0.8rem; }
+    .pet-card { width: 100%; max-width: 320px; }
+    .carousel-slide { height: 260px; }
+    .section-title { font-size: 1.3rem; }
+}
