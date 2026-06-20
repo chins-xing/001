@@ -1,0 +1,355 @@
+/* ===== 宠物百科 简单风格 ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ===== 关键帧动画 ===== */
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes scaleIn { from { opacity: 0; transform: scale(0.6); } to { opacity: 1; transform: scale(1); } }
+@keyframes slideInLeft { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes slideInRight { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+@keyframes shimmer { 0% { background-position: -200px 0; } 100% { background-position: calc(200px + 100%) 0; } }
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes zoomIn { from { opacity: 0; transform: scale(0.3); } to { opacity: 1; transform: scale(1); } }
+@keyframes bounceIn { 0%{opacity:0;transform:scale(0.3)}50%{transform:scale(1.08)}70%{transform:scale(0.95)}100%{opacity:1;transform:scale(1)} }
+@keyframes ripple { to { transform: scale(4); opacity: 0; } }
+
+.anim-fade-in { animation: fadeIn 0.6s ease forwards; }
+.anim-fade-up { animation: fadeInUp 0.6s ease forwards; }
+.anim-scale-in { animation: scaleIn 0.5s ease forwards; }
+.anim-slide-left { animation: slideInLeft 0.5s ease forwards; }
+.anim-slide-right { animation: slideInRight 0.5s ease forwards; }
+.anim-bounce-in { animation: bounceIn 0.6s ease forwards; }
+.anim-float { animation: float 3s ease-in-out infinite; }
+.anim-pulse { animation: pulse 2s ease-in-out infinite; }
+.anim-zoom-in { animation: zoomIn 0.5s ease forwards; }
+.anim-shimmer {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200px 100%; animation: shimmer 1.5s infinite;
+}
+
+[data-anim] { opacity: 0; }
+[data-anim].anim-done { opacity: 1; animation-duration: 0.6s; animation-fill-mode: forwards; }
+[data-anim="fade-up"].anim-done { animation-name: fadeInUp; }
+[data-anim="scale-in"].anim-done { animation-name: scaleIn; }
+[data-anim="slide-left"].anim-done { animation-name: slideInLeft; }
+[data-anim="slide-right"].anim-done { animation-name: slideInRight; }
+[data-anim="bounce-in"].anim-done { animation-name: bounceIn; }
+[data-anim="zoom-in"].anim-done { animation-name: zoomIn; }
+[data-anim="fade-in"].anim-done { animation-name: fadeIn; }
+
+/* ===== 星空背景层 ===== */
+.starry-bg { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; background: linear-gradient(180deg, #0a0a2e, #001a33); }
+.starry-bg ~ * { position: relative; z-index: 1; }
+.star-layer {
+    position: absolute; left: 0; top: 0; border-radius: 50%;
+    animation: moveUp 200s linear infinite, flicker 3s ease-in-out infinite;
+}
+.star-layer::after { content: ''; position: absolute; left: 0; top: 100vh; width: inherit; height: inherit; box-shadow: inherit; border-radius: inherit; }
+.star-s { width: 1px; height: 1px; box-shadow: 86vw 96vh 0 #fff, 40vw 16vh 0 #fff, 64vw 64vh 0 #fff, 28vw 76vh 0 #fff, 21vw 34vh 0 #fff, 93vw 52vh 0 #fff, 29vw 13vh 0 #fff, 37vw 31vh 0 #fff, 32vw 60vh 0 #fff, 41vw 60vh 0 #fff, 48vw 8vh 0 #fff, 9vw 37vh 0 #fff, 45vw 1vh 0 #fff, 46vw 7vh 0 #fff, 61vw 91vh 0 #fff, 61vw 82vh 0 #fff, 98vw 21vh 0 #fff, 98vw 5vh 0 #fff, 61vw 45vh 0 #fff, 28vw 96vh 0 #fff, 12vw 25vh 0 #fff, 4vw 77vh 0 #fff, 15vw 29vh 0 #fff, 33vw 68vh 0 #fff, 94vw 80vh 0 #fff, 54vw 25vh 0 #fff, 39vw 38vh 0 #fff, 68vw 41vh 0 #fff, 63vw 84vh 0 #fff, 67vw 29vh 0 #fff, 78vw 72vh 0 #fff, 39vw 41vh 0 #fff, 23vw 75vh 0 #fff, 48vw 71vh 0 #fff, 81vw 7vh 0 #fff, 16vw 85vh 0 #fff, 28vw 74vh 0 #fff, 40vw 90vh 0 #fff, 78vw 39vh 0 #fff, 55vw 45vh 0 #fff, 88vw 64vh 0 #fff, 20vw 5vh 0 #fff, 43vw 67vh 0 #fff, 19vw 94vh 0 #fff, 38vw 3vh 0 #fff, 69vw 61vh 0 #fff, 91vw 68vh 0 #fff, 32vw 69vh 0 #fff, 72vw 72vh 0 #fff, 64vw 61vh 0 #fff, 45vw 88vh 0 #fff, 20vw 64vh 0 #fff, 8vw 47vh 0 #fff, 42vw 78vh 0 #fff, 63vw 7vh 0 #fff, 59vw 27vh 0 #fff, 34vw 81vh 0 #fff, 11vw 49vh 0 #fff, 77vw 53vh 0 #fff, 81vw 71vh 0 #fff, 74vw 90vh 0 #fff, 100vw 35vh 0 #fff, 47vw 26vh 0 #fff, 51vw 85vh 0 #fff, 37vw 10vh 0 #fff, 73vw 62vh 0 #fff, 91vw 81vh 0 #fff, 64vw 78vh 0 #fff, 71vw 52vh 0 #fff, 68vw 54vh 0 #fff, 77vw 48vh 0 #fff, 43vw 3vh 0 #fff, 57vw 87vh 0 #fff, 63vw 13vh 0 #fff, 6vw 29vh 0 #fff, 34vw 28vh 0 #fff, 11vw 40vh 0 #fff, 71vw 83vh 0 #fff, 24vw 85vh 0 #fff, 54vw 99vh 0 #fff, 72vw 42vh 0 #fff, 9vw 98vh 0 #fff, 16vw 18vh 0 #fff, 77vw 49vh 0 #fff, 31vw 83vh 0 #fff, 78vw 37vh 0 #fff, 67vw 2vh 0 #fff, 98vw 3vh 0 #fff, 9vw 42vh 0 #fff, 65vw 13vh 0 #fff, 84vw 32vh 0 #fff, 17vw 36vh 0 #fff, 1vw 90vh 0 #fff, 80vw 53vh 0 #fff, 92vw 19vh 0 #fff, 13vw 69vh 0 #fff, 88vw 65vh 0 #fff, 10vw 43vh 0 #fff, 100vw 62vh 0 #fff, 90vw 46vh 0 #fff, 89vw 88vh 0 #fff, 38vw 61vh 0 #fff, 33vw 96vh 0 #fff, 77vw 48vh 0 #fff, 43vw 20vh 0 #fff, 85vw 32vh 0 #fff, 2vw 70vh 0 #fff, 24vw 92vh 0 #fff, 20vw 6vh 0 #fff, 69vw 23vh 0 #fff, 83vw 41vh 0 #fff, 40vw 49vh 0 #fff, 89vw 50vh 0 #fff, 68vw 19vh 0 #fff, 56vw 36vh 0 #fff, 52vw 82vh 0 #fff, 1vw 46vh 0 #fff, 9vw 94vh 0 #fff, 47vw 23vh 0 #fff, 9vw 68vh 0 #fff, 37vw 47vh 0 #fff, 7vw 66vh 0 #fff, 68vw 55vh 0 #fff, 64vw 80vh 0 #fff, 32vw 75vh 0 #fff, 19vw 28vh 0 #fff, 24vw 72vh 0 #fff, 36vw 14vh 0 #fff, 30vw 88vh 0 #fff, 87vw 62vh 0 #fff, 50vw 39vh 0 #fff, 60vw 14vh 0 #fff, 85vw 11vh 0 #fff, 78vw 57vh 0 #fff, 55vw 24vh 0 #fff, 65vw 9vh 0 #fff, 84vw 85vh 0 #fff; }
+.star-m { width: 2px; height: 2px; box-shadow: 43vw 85vh 0 #fff, 29vw 61vh 0 #fff, 59vw 96vh 0 #fff, 19vw 11vh 0 #fff, 43vw 27vh 0 #fff, 100vw 81vh 0 #fff, 53vw 38vh 0 #fff, 3vw 65vh 0 #fff, 71vw 16vh 0 #fff, 74vw 50vh 0 #fff, 86vw 59vh 0 #fff, 85vw 85vh 0 #fff, 55vw 10vh 0 #fff, 41vw 95vh 0 #fff, 76vw 66vh 0 #fff, 1vw 87vh 0 #fff, 23vw 63vh 0 #fff, 9vw 15vh 0 #fff, 74vw 57vh 0 #fff, 19vw 99vh 0 #fff, 99vw 77vh 0 #fff, 22vw 2vh 0 #fff, 33vw 87vh 0 #fff, 85vw 11vh 0 #fff, 93vw 76vh 0 #fff, 56vw 22vh 0 #fff, 1vw 69vh 0 #fff, 54vw 84vh 0 #fff, 30vw 6vh 0 #fff, 45vw 45vh 0 #fff, 65vw 28vh 0 #fff, 7vw 44vh 0 #fff, 40vw 45vh 0 #fff, 83vw 32vh 0 #fff, 98vw 16vh 0 #fff, 71vw 92vh 0 #fff, 4vw 33vh 0 #fff, 8vw 74vh 0 #fff, 13vw 11vh 0 #fff, 34vw 3vh 0 #fff, 41vw 48vh 0 #fff, 97vw 63vh 0 #fff, 71vw 94vh 0 #fff, 12vw 92vh 0 #fff, 44vw 46vh 0 #fff, 18vw 37vh 0 #fff, 93vw 50vh 0 #fff, 21vw 95vh 0 #fff, 7vw 10vh 0 #fff, 86vw 97vh 0 #fff, 29vw 31vh 0 #fff, 38vw 20vh 0 #fff, 44vw 90vh 0 #fff, 46vw 25vh 0 #fff, 33vw 68vh 0 #fff, 85vw 3vh 0 #fff, 40vw 26vh 0 #fff, 94vw 81vh 0 #fff, 66vw 1vh 0 #fff, 41vw 95vh 0 #fff, 42vw 64vh 0 #fff, 5vw 70vh 0 #fff, 32vw 49vh 0 #fff, 77vw 12vh 0 #fff, 17vw 88vh 0 #fff, 79vw 31vh 0 #fff, 20vw 69vh 0 #fff, 33vw 69vh 0 #fff, 71vw 31vh 0 #fff, 69vw 31vh 0 #fff, 84vw 97vh 0 #fff, 87vw 41vh 0 #fff, 20vw 71vh 0 #fff, 92vw 40vh 0 #fff, 45vw 31vh 0 #fff, 77vw 46vh 0 #fff, 45vw 4vh 0 #fff, 23vw 21vh 0 #fff, 52vw 49vh 0 #fff, 54vw 35vh 0 #fff, 31vw 3vh 0 #fff, 89vw 64vh 0 #fff, 85vw 43vh 0 #fff, 19vw 31vh 0 #fff, 79vw 33vh 0 #fff, 23vw 16vh 0 #fff, 12vw 40vh 0 #fff, 18vw 46vh 0 #fff, 51vw 26vh 0 #fff, 40vw 61vh 0 #fff, 39vw 90vh 0 #fff, 88vw 88vh 0 #fff, 71vw 19vh 0 #fff, 93vw 9vh 0 #fff, 61vw 56vh 0 #fff, 36vw 26vh 0 #fff, 68vw 82vh 0 #fff, 99vw 81vh 0 #fff, 88vw 52vh 0 #fff; animation-duration: 300s; }
+.star-l { width: 3px; height: 3px; box-shadow: 8vw 76vh 0 #fff, 54vw 46vh 0 #fff, 11vw 82vh 0 #fff, 48vw 20vh 0 #fff, 27vw 17vh 0 #fff, 50vw 58vh 0 #fff, 81vw 95vh 0 #fff, 14vw 40vh 0 #fff, 9vw 100vh 0 #fff, 59vw 28vh 0 #fff, 69vw 55vh 0 #fff, 30vw 7vh 0 #fff, 23vw 37vh 0 #fff, 60vw 8vh 0 #fff, 84vw 43vh 0 #fff, 18vw 48vh 0 #fff, 75vw 84vh 0 #fff, 93vw 95vh 0 #fff, 97vw 86vh 0 #fff, 22vw 96vh 0 #fff, 16vw 31vh 0 #fff, 70vw 60vh 0 #fff, 80vw 49vh 0 #fff, 41vw 81vh 0 #fff, 38vw 91vh 0 #fff, 18vw 29vh 0 #fff, 30vw 33vh 0 #fff, 59vw 19vh 0 #fff, 5vw 83vh 0 #fff, 21vw 70vh 0 #fff, 79vw 99vh 0 #fff, 83vw 16vh 0 #fff, 31vw 53vh 0 #fff, 6vw 92vh 0 #fff, 47vw 41vh 0 #fff, 49vw 52vh 0 #fff, 55vw 13vh 0 #fff, 56vw 43vh 0 #fff, 36vw 8vh 0 #fff; animation-duration: 400s; }
+
+/* ===== 毛玻璃效果 ===== */
+.glass {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: var(--radius);
+}
+.glass-dark {
+    background: rgba(21,101,192,0.12);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(21,101,192,0.15);
+}
+
+/* ===== 加载动画 ===== */
+.app-loading {
+    position: fixed; inset: 0; z-index: 9999;
+    display: flex; justify-content: center; align-items: center;
+    background: var(--bg-body);
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+.app-loading.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+.app-loading-wrap { text-align: center; }
+.app-loading-logo { width: 64px; height: 64px; border-radius: 50%; margin-bottom: 1.5rem; }
+.loading-dots { display: inline-flex; gap: 8px; }
+.loading-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--blue-500);
+    animation: dotBounce 1.4s ease-in-out infinite both;
+}
+.loading-dot:nth-child(1) { animation-delay: -0.32s; }
+.loading-dot:nth-child(2) { animation-delay: -0.16s; }
+.loading-dot:nth-child(3) { animation-delay: 0s; }
+@keyframes dotBounce { 0%,80%,100% { transform: scale(0.6); } 40% { transform: scale(1); } }
+.app-loading-title { margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem; }
+
+/* ===== 图片懒加载占位 ===== */
+img[data-src] { opacity: 0; transition: opacity 0.4s ease; }
+img.loaded { opacity: 1; }
+.img-placeholder {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200px 100%; animation: shimmer 1.5s infinite;
+}
+
+:root {
+    --blue-700: #1565c0; --blue-500: #1a73e8; --blue-300: #4a90d9;
+    --blue-100: #bbdefb; --blue-50: #e3f2fd;
+    --text-primary: #1a1a2e; --text-secondary: #5f6368; --text-light: #9aa0a6;
+    --bg-body: #f5f8fc; --bg-card: #fff; --bg-light: #e8f0fe;
+    --radius: 6px;
+}
+
+body {
+    font-family: -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: linear-gradient(180deg, var(--blue-700) 0%, var(--blue-700) 33vh, #fff 33vh);
+    color: var(--text-primary); line-height: 1.6;
+}
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+/* ===== 头部导航 ===== */
+.header {
+    background: var(--blue-700); color: #fff; position: sticky; top: 0; z-index: 100;
+    animation: fadeIn 0.5s ease;
+}
+.header .container {
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem; padding: 1rem 24px;
+}
+.logo { font-size: 1.4rem; font-weight: 700; }
+.nav { display: flex; gap: 0.25rem; }
+
+.nav-link {
+    color: rgba(255,255,255,0.8); text-decoration: none;
+    padding: 0.4rem 1rem; border-radius: var(--radius); font-size: 0.9rem;
+    transition: all 0.25s ease; position: relative; overflow: hidden;
+}
+.nav-link:hover { color: #fff; background: rgba(255,255,255,0.12); transform: translateY(-1px); }
+.nav-link.active { color: #fff; background: rgba(255,255,255,0.18); }
+
+/* ===== 主体 ===== */
+.main { min-height: calc(100vh - 160px); padding: 2rem 0; }
+
+.section-title.section-title--white { color: #fff; border-bottom-color: rgba(255,255,255,0.3); }
+
+.section-title {
+    text-align: center; font-size: 1.6rem; font-weight: 700;
+    margin-bottom: 2rem; color: var(--blue-700);
+    padding-bottom: 0.6rem; border-bottom: 2px solid var(--blue-100);
+}
+
+/* ===== 轮播 ===== */
+.carousel {
+    position: relative; max-width: 800px; margin: 0 auto 2.5rem;
+    overflow: hidden; border-radius: var(--radius);
+    animation: fadeIn 0.8s ease;
+}
+.carousel-track { display: flex; transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+
+.carousel-slide {
+    min-width: 100%; height: 380px; display: flex; align-items: flex-end;
+    padding: 2rem; color: #fff;
+    background: var(--blue-700) center/cover no-repeat;
+    transition: transform 0.3s ease;
+}
+.carousel-slide:hover { transform: scale(1.02); }
+.carousel-slide > div { animation: fadeInUp 0.6s ease 0.2s both; }
+.carousel-slide h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.3rem; }
+.carousel-slide p { font-size: 0.9rem; opacity: 0.85; }
+
+.carousel-btn {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: #fff; color: var(--blue-500); border: none;
+    width: 36px; height: 36px; border-radius: 50%;
+    cursor: pointer; font-size: 1.1rem; font-weight: bold;
+    transition: all 0.25s ease; z-index: 3;
+}
+.carousel-btn:hover { background: var(--blue-50); transform: translateY(-50%) scale(1.15); }
+.carousel-btn:active { transform: translateY(-50%) scale(0.95); }
+.prev-btn { left: 0.8rem; }
+.next-btn { right: 0.8rem; }
+
+.carousel-dots {
+    position: absolute; bottom: 0.8rem; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 0.4rem; z-index: 2;
+}
+.carousel-dot {
+    width: 24px; height: 3px; border-radius: 2px;
+    background: rgba(255,255,255,0.35); cursor: pointer;
+    transition: all 0.3s ease; position: relative;
+}
+.carousel-dot:hover { background: rgba(255,255,255,0.7); transform: scaleY(1.5); }
+.carousel-dot.active { background: #fff; width: 32px; }
+
+/* ===== 品种卡片 ===== */
+.pets-grid { display: flex; flex-wrap: wrap; gap: 1.25rem; justify-content: center; }
+
+.pet-card, .wiki-sidebar, .wiki-content {
+    background: var(--bg-card); border-radius: var(--radius);
+    border: 1px solid rgba(26,115,232,0.06);
+}
+
+.pet-card {
+    overflow: hidden; width: 280px; cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+}
+.pet-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(21,101,192,0.15), 0 4px 12px rgba(21,101,192,0.1);
+}
+.pet-card:active { transform: translateY(-2px); }
+.pet-card::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(26,115,232,0.08), transparent);
+    opacity: 0; transition: opacity 0.35s; pointer-events: none;
+}
+.pet-card:hover::after { opacity: 1; }
+
+.pet-avatar {
+    width: 110px; height: 110px; margin: 1.5rem auto 1rem;
+    background: center/cover no-repeat; border-radius: 50%;
+    border: 3px solid var(--blue-100);
+    transition: all 0.35s ease;
+}
+.pet-card:hover .pet-avatar {
+    border-color: var(--blue-500); transform: scale(1.08);
+    box-shadow: 0 4px 16px rgba(21,101,192,0.2);
+}
+.pet-info { padding: 0 1.25rem 1.25rem; text-align: center; }
+.pet-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--blue-700); transition: color 0.25s; }
+.pet-card:hover .pet-name { color: var(--blue-500); }
+
+.pet-desc {
+    font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;
+    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+
+/* ===== 页脚 ===== */
+.footer { background: var(--blue-700); color: #fff; text-align: center; padding: 1.5rem 0; margin-top: 2.5rem; animation: fadeIn 0.6s ease; }
+.footer p { opacity: 0.75; font-size: 0.85rem; }
+
+/* ===== 百科页面 ===== */
+.wiki-main .container { display: flex; gap: 2rem; align-items: flex-start; }
+
+.wiki-sidebar {
+    width: 220px; padding: 1.25rem; position: sticky; top: 80px; flex-shrink: 0;
+}
+.sidebar-title {
+    font-size: 1rem; font-weight: 700; margin-bottom: 1rem;
+    color: var(--blue-700); padding-bottom: 0.6rem; border-bottom: 2px solid var(--bg-light);
+}
+.pet-list { list-style: none; }
+.wiki-filter { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 0.8rem; }
+.wiki-filter .filter-btn {
+    padding: 0.25rem 0.6rem; font-size: 0.78rem; border: 1px solid var(--blue-100);
+    background: transparent; color: var(--text-secondary); border-radius: 4px;
+    cursor: pointer; transition: all 0.2s ease;
+}
+.wiki-filter .filter-btn:hover { background: var(--bg-light); color: var(--blue-500); }
+.wiki-filter .filter-btn.active { background: var(--blue-500); color: #fff; border-color: var(--blue-500); }
+.pet-list li {
+    display: flex; align-items: center; gap: 8px;
+    padding: 0.6rem 0.8rem; margin-bottom: 0.2rem; border-radius: var(--radius);
+    cursor: pointer; font-size: 0.9rem; color: var(--text-secondary);
+    transition: all 0.25s ease;
+}
+.pet-list-avatar {
+    width: 32px; height: 32px; border-radius: 50%; object-fit: cover;
+    border: 2px solid var(--blue-100); flex-shrink: 0;
+}
+.pet-list li:hover .pet-list-avatar { border-color: var(--blue-500); }
+.pet-list li.active .pet-list-avatar { border-color: #fff; }
+.pet-list li:hover { background: var(--bg-light); color: var(--blue-500); transform: translateX(4px); }
+.pet-list li.active { background: var(--blue-500); color: #fff; font-weight: 600; transform: translateX(0); }
+
+.wiki-content { flex: 1; padding: 1.75rem; min-height: 400px; }
+.wiki-placeholder { text-align: center; color: var(--text-light); padding: 3rem 2rem; }
+
+.wiki-detail { animation: fadeInUp 0.5s ease; }
+.wiki-detail-header { display: flex; gap: 1.25rem; align-items: flex-start; margin-bottom: 0.5rem; }
+.wiki-detail-header h2 {
+    color: var(--blue-700); font-size: 1.4rem; margin-bottom: 0.6rem;
+    padding-bottom: 0.6rem; border-bottom: 2px solid var(--bg-light);
+}
+.wiki-detail-header > div:last-child { flex: 1; }
+.wiki-detail-avatar {
+    width: 100px; height: 100px; border-radius: 12px; flex-shrink: 0;
+    background: center/cover no-repeat; border: 3px solid var(--blue-100);
+}
+.wiki-detail h3 { color: var(--blue-500); font-size: 1rem; margin: 1.2rem 0 0.8rem; font-weight: 600; }
+
+.wiki-detail .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.8rem; margin: 1rem 0; }
+.wiki-detail .info-item {
+    background: var(--bg-body); padding: 0.8rem 1rem; border-radius: var(--radius); border-left: 3px solid var(--blue-300);
+    animation: slideInLeft 0.4s ease both;
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+.wiki-detail .info-item:hover { transform: translateX(4px); box-shadow: 0 2px 8px rgba(21,101,192,0.1); }
+.wiki-detail .info-item:nth-child(2) { animation-delay: 0.1s; }
+.wiki-detail .info-item:nth-child(3) { animation-delay: 0.2s; }
+.wiki-detail .info-label { font-size: 0.78rem; color: var(--text-light); margin-bottom: 0.2rem; }
+.wiki-detail .info-value { font-size: 1rem; font-weight: 700; color: var(--blue-700); }
+.wiki-detail .traits { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.8rem 0; }
+.wiki-detail .trait-tag {
+    background: var(--bg-light); color: var(--blue-500); padding: 0.25rem 0.8rem; border-radius: 4px; font-size: 0.82rem; font-weight: 500;
+    transition: all 0.25s ease; cursor: default;
+}
+.wiki-detail .trait-tag:hover { transform: translateY(-2px) scale(1.05); box-shadow: 0 2px 8px rgba(21,101,192,0.15); }
+
+.wiki-detail .tab-nav { display: flex; margin: 1.5rem 0 1rem; background: var(--bg-body); border-radius: var(--radius); padding: 3px; }
+.wiki-detail .tab-btn {
+    padding: 0.6rem 1.2rem; background: transparent; border: none; cursor: pointer; font-size: 0.9rem; font-weight: 500; color: var(--text-secondary); border-radius: var(--radius); flex: 1;
+    transition: all 0.25s ease; position: relative;
+}
+.wiki-detail .tab-btn:hover { color: var(--blue-500); }
+.wiki-detail .tab-btn.active { background: #fff; color: var(--blue-700); font-weight: 600; }
+.wiki-detail .tab-content { display: none; }
+.wiki-detail .tab-content.active { display: block; animation: fadeInUp 0.4s ease; }
+
+.wiki-detail .step-list { list-style: none; }
+.wiki-detail .step-item {
+    background: var(--bg-body); padding: 1rem 1.25rem; margin-bottom: 0.6rem; border-radius: var(--radius); border-left: 3px solid var(--blue-300);
+    animation: slideInRight 0.4s ease both;
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+.wiki-detail .step-item:hover { transform: translateX(4px); box-shadow: 0 2px 10px rgba(21,101,192,0.08); }
+.wiki-detail .step-header { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.2rem; }
+.wiki-detail .step-number { background: var(--blue-500); color: #fff; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; border-radius: 4px; }
+.wiki-detail .step-title { font-size: 0.95rem; font-weight: 600; color: var(--text-primary); }
+.wiki-detail .step-duration { color: var(--text-light); font-size: 0.82rem; margin-left: auto; }
+
+/* ===== 汉堡菜单 ===== */
+.hamburger {
+    display: none; flex-direction: column; gap: 4px; cursor: pointer;
+    padding: 4px; z-index: 101;
+}
+.hamburger__line {
+    width: 24px; height: 2px; background: #fff;
+    border-radius: 2px; transition: all 0.3s ease;
+}
+.hamburger-active .hamburger__line:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.hamburger-active .hamburger__line:nth-child(2) { opacity: 0; }
+.hamburger-active .hamburger__line:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* ===== 响应式 ===== */
+@media (max-width: 768px) {
+    .hamburger { display: flex; }
+    .header .container { flex-direction: row; padding: 0.8rem 16px; flex-wrap: wrap; }
+    .nav {
+        order: 3; width: 100%; justify-content: center;
+        max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease;
+        flex-direction: column; align-items: center; padding: 0;
+    }
+    .hamburger-active .nav { max-height: 300px; padding: 0.5rem 0; }
+    .wiki-main .container { flex-direction: column; }
+    .wiki-sidebar { width: 100%; position: static; }
+    .pets-grid { gap: 0.8rem; }
+    .pet-card { width: 100%; max-width: 320px; }
+    .carousel-slide { height: 260px; }
+    .section-title { font-size: 1.3rem; }
+}

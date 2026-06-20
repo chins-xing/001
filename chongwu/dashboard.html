@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>宠物百科 - 数据大屏</title>
-    <link rel="stylesheet" href="yang/dashboard.css">
+    <link rel="stylesheet" href="css/dashboard.css">
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
 </head>
 <body>
@@ -15,6 +15,11 @@
             <a href="wiki.html" class="nav-link">百科</a>
             <a href="dashboard.html" class="nav-link active">数据大屏</a>
         </nav>
+        <div class="hamburger" id="hamburger">
+            <div class="hamburger__line"></div>
+            <div class="hamburger__line"></div>
+            <div class="hamburger__line"></div>
+        </div>
     </header>
 
     <main class="dashboard-main">
@@ -49,6 +54,8 @@
                         <option value="猫">猫</option>
                         <option value="仓鼠">仓鼠</option>
                         <option value="兔子">兔子</option>
+                        <option value="鸟类">鸟类</option>
+                        <option value="龙猫">龙猫</option>
                     </select>
                 </div>
                 <div class="chart-container" id="growthChart"></div>
@@ -60,6 +67,11 @@
         <p>&copy; 2024 宠物百科 - 数据大屏</p>
     </footer>
 
-    <script src="ben/dashboard.js"></script>
+    <script>
+        document.getElementById('hamburger')?.addEventListener('click', function() {
+            document.querySelector('.dashboard-header').classList.toggle('hamburger-active');
+        });
+    </script>
+    <script src="js/dashboard.js"></script>
 </body>
 </html>

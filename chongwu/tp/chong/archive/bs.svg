@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="bg-ragdoll" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#d4a0d0;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#b880b8;stop-opacity:1"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="url(#bg-ragdoll)" rx="20"/>
+  <ellipse cx="200" cy="135" rx="80" ry="72" fill="#f0e0f0"/>
+  <ellipse cx="200" cy="130" rx="76" ry="68" fill="#f5ebf5"/>
+  <ellipse cx="200" cy="125" rx="72" ry="64" fill="#faf0fa"/>
+  <ellipse cx="200" cy="140" rx="55" ry="45" fill="#fff0ff"/>
+  <ellipse cx="165" cy="105" rx="28" ry="24" fill="#f0e0f0"/>
+  <ellipse cx="235" cy="105" rx="28" ry="24" fill="#f0e0f0"/>
+  <ellipse cx="165" cy="102" rx="24" ry="20" fill="#faf0fa"/>
+  <ellipse cx="235" cy="102" rx="24" ry="20" fill="#faf0fa"/>
+  <circle cx="165" cy="102" r="9" fill="#6ba3d9"/>
+  <circle cx="235" cy="102" r="9" fill="#6ba3d9"/>
+  <circle cx="168" cy="100" r="3" fill="white"/>
+  <circle cx="238" cy="100" r="3" fill="white"/>
+  <ellipse cx="200" cy="125" rx="5" ry="3" fill="#ffb5b5"/>
+  <ellipse cx="200" cy="125" rx="3" ry="2" fill="#e88"/>
+  <path d="M175 152 Q200 168 225 152" stroke="#a080a0" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <ellipse cx="145" cy="145" rx="20" ry="28" fill="#e0c8e0"/>
+  <ellipse cx="255" cy="145" rx="20" ry="28" fill="#e0c8e0"/>
+  <ellipse cx="145" cy="140" rx="17" ry="22" fill="#f0e0f0"/>
+  <ellipse cx="255" cy="140" rx="17" ry="22" fill="#f0e0f0"/>
+  <path d="M130 110 Q110 100 100 108" stroke="#d0b0d0" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M270 110 Q290 100 300 108" stroke="#d0b0d0" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M155 60 Q170 45 200 43 Q230 45 245 60" fill="#e0c8e0" stroke="#d0b0d0" stroke-width="1"/>
+  <path d="M160 56 Q175 43 200 41 Q225 43 240 56" fill="#f0e0f0"/>
+  <ellipse cx="200" cy="190" rx="15" ry="20" fill="#f0e0f0"/>
+  <ellipse cx="180" cy="195" rx="12" ry="15" fill="#f0e0f0"/>
+  <ellipse cx="220" cy="195" rx="12" ry="15" fill="#f0e0f0"/>
+  <text x="200" y="270" text-anchor="middle" fill="white" font-size="22" font-weight="bold" font-family="sans-serif" letter-spacing="2">布偶猫</text>
+</svg>
