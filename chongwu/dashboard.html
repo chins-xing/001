@@ -4,21 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>宠物百科 - 数据大屏</title>
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/dashboard.css">
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
 </head>
 <body>
-    <header class="dashboard-header">
-        <h1 class="dashboard-title">宠物数据大屏</h1>
-        <nav class="dashboard-nav">
-            <a href="index.html" class="nav-link">首页</a>
-            <a href="wiki.html" class="nav-link">百科</a>
-            <a href="dashboard.html" class="nav-link active">数据大屏</a>
-        </nav>
-        <div class="hamburger" id="hamburger">
-            <div class="hamburger__line"></div>
-            <div class="hamburger__line"></div>
-            <div class="hamburger__line"></div>
+    <canvas id="geoBg" class="geo-bg"></canvas>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">宠物数据大屏</h1>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">首页</a>
+                <a href="wiki.html" class="nav-link">百科</a>
+                <a href="dashboard.html" class="nav-link active">数据大屏</a>
+            </nav>
+            <div class="hamburger" id="hamburger">
+                <div class="hamburger__line"></div>
+                <div class="hamburger__line"></div>
+                <div class="hamburger__line"></div>
+            </div>
         </div>
     </header>
 
@@ -63,15 +67,14 @@
         </div>
     </main>
 
-    <footer class="dashboard-footer">
-        <p>&copy; 2024 宠物百科 - 数据大屏</p>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 宠物百科 - 数据大屏</p>
+        </div>
     </footer>
 
-    <script>
-        document.getElementById('hamburger')?.addEventListener('click', function() {
-            document.querySelector('.dashboard-header').classList.toggle('hamburger-active');
-        });
-    </script>
+    <script src="js/common.js"></script>
+    <script src="js/geo-bg.js"></script>
     <script src="js/dashboard.js"></script>
 </body>
 </html>

@@ -38,17 +38,11 @@
 [data-anim="zoom-in"].anim-done { animation-name: zoomIn; }
 [data-anim="fade-in"].anim-done { animation-name: fadeIn; }
 
-/* ===== 星空背景层 ===== */
-.starry-bg { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; background: linear-gradient(180deg, #0a0a2e, #001a33); }
-.starry-bg ~ * { position: relative; z-index: 1; }
-.star-layer {
-    position: absolute; left: 0; top: 0; border-radius: 50%;
-    animation: moveUp 200s linear infinite, flicker 3s ease-in-out infinite;
+/* ===== 几何背景层 ===== */
+.geo-bg {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
 }
-.star-layer::after { content: ''; position: absolute; left: 0; top: 100vh; width: inherit; height: inherit; box-shadow: inherit; border-radius: inherit; }
-.star-s { width: 1px; height: 1px; box-shadow: 86vw 96vh 0 #fff, 40vw 16vh 0 #fff, 64vw 64vh 0 #fff, 28vw 76vh 0 #fff, 21vw 34vh 0 #fff, 93vw 52vh 0 #fff, 29vw 13vh 0 #fff, 37vw 31vh 0 #fff, 32vw 60vh 0 #fff, 41vw 60vh 0 #fff, 48vw 8vh 0 #fff, 9vw 37vh 0 #fff, 45vw 1vh 0 #fff, 46vw 7vh 0 #fff, 61vw 91vh 0 #fff, 61vw 82vh 0 #fff, 98vw 21vh 0 #fff, 98vw 5vh 0 #fff, 61vw 45vh 0 #fff, 28vw 96vh 0 #fff, 12vw 25vh 0 #fff, 4vw 77vh 0 #fff, 15vw 29vh 0 #fff, 33vw 68vh 0 #fff, 94vw 80vh 0 #fff, 54vw 25vh 0 #fff, 39vw 38vh 0 #fff, 68vw 41vh 0 #fff, 63vw 84vh 0 #fff, 67vw 29vh 0 #fff, 78vw 72vh 0 #fff, 39vw 41vh 0 #fff, 23vw 75vh 0 #fff, 48vw 71vh 0 #fff, 81vw 7vh 0 #fff, 16vw 85vh 0 #fff, 28vw 74vh 0 #fff, 40vw 90vh 0 #fff, 78vw 39vh 0 #fff, 55vw 45vh 0 #fff, 88vw 64vh 0 #fff, 20vw 5vh 0 #fff, 43vw 67vh 0 #fff, 19vw 94vh 0 #fff, 38vw 3vh 0 #fff, 69vw 61vh 0 #fff, 91vw 68vh 0 #fff, 32vw 69vh 0 #fff, 72vw 72vh 0 #fff, 64vw 61vh 0 #fff, 45vw 88vh 0 #fff, 20vw 64vh 0 #fff, 8vw 47vh 0 #fff, 42vw 78vh 0 #fff, 63vw 7vh 0 #fff, 59vw 27vh 0 #fff, 34vw 81vh 0 #fff, 11vw 49vh 0 #fff, 77vw 53vh 0 #fff, 81vw 71vh 0 #fff, 74vw 90vh 0 #fff, 100vw 35vh 0 #fff, 47vw 26vh 0 #fff, 51vw 85vh 0 #fff, 37vw 10vh 0 #fff, 73vw 62vh 0 #fff, 91vw 81vh 0 #fff, 64vw 78vh 0 #fff, 71vw 52vh 0 #fff, 68vw 54vh 0 #fff, 77vw 48vh 0 #fff, 43vw 3vh 0 #fff, 57vw 87vh 0 #fff, 63vw 13vh 0 #fff, 6vw 29vh 0 #fff, 34vw 28vh 0 #fff, 11vw 40vh 0 #fff, 71vw 83vh 0 #fff, 24vw 85vh 0 #fff, 54vw 99vh 0 #fff, 72vw 42vh 0 #fff, 9vw 98vh 0 #fff, 16vw 18vh 0 #fff, 77vw 49vh 0 #fff, 31vw 83vh 0 #fff, 78vw 37vh 0 #fff, 67vw 2vh 0 #fff, 98vw 3vh 0 #fff, 9vw 42vh 0 #fff, 65vw 13vh 0 #fff, 84vw 32vh 0 #fff, 17vw 36vh 0 #fff, 1vw 90vh 0 #fff, 80vw 53vh 0 #fff, 92vw 19vh 0 #fff, 13vw 69vh 0 #fff, 88vw 65vh 0 #fff, 10vw 43vh 0 #fff, 100vw 62vh 0 #fff, 90vw 46vh 0 #fff, 89vw 88vh 0 #fff, 38vw 61vh 0 #fff, 33vw 96vh 0 #fff, 77vw 48vh 0 #fff, 43vw 20vh 0 #fff, 85vw 32vh 0 #fff, 2vw 70vh 0 #fff, 24vw 92vh 0 #fff, 20vw 6vh 0 #fff, 69vw 23vh 0 #fff, 83vw 41vh 0 #fff, 40vw 49vh 0 #fff, 89vw 50vh 0 #fff, 68vw 19vh 0 #fff, 56vw 36vh 0 #fff, 52vw 82vh 0 #fff, 1vw 46vh 0 #fff, 9vw 94vh 0 #fff, 47vw 23vh 0 #fff, 9vw 68vh 0 #fff, 37vw 47vh 0 #fff, 7vw 66vh 0 #fff, 68vw 55vh 0 #fff, 64vw 80vh 0 #fff, 32vw 75vh 0 #fff, 19vw 28vh 0 #fff, 24vw 72vh 0 #fff, 36vw 14vh 0 #fff, 30vw 88vh 0 #fff, 87vw 62vh 0 #fff, 50vw 39vh 0 #fff, 60vw 14vh 0 #fff, 85vw 11vh 0 #fff, 78vw 57vh 0 #fff, 55vw 24vh 0 #fff, 65vw 9vh 0 #fff, 84vw 85vh 0 #fff; }
-.star-m { width: 2px; height: 2px; box-shadow: 43vw 85vh 0 #fff, 29vw 61vh 0 #fff, 59vw 96vh 0 #fff, 19vw 11vh 0 #fff, 43vw 27vh 0 #fff, 100vw 81vh 0 #fff, 53vw 38vh 0 #fff, 3vw 65vh 0 #fff, 71vw 16vh 0 #fff, 74vw 50vh 0 #fff, 86vw 59vh 0 #fff, 85vw 85vh 0 #fff, 55vw 10vh 0 #fff, 41vw 95vh 0 #fff, 76vw 66vh 0 #fff, 1vw 87vh 0 #fff, 23vw 63vh 0 #fff, 9vw 15vh 0 #fff, 74vw 57vh 0 #fff, 19vw 99vh 0 #fff, 99vw 77vh 0 #fff, 22vw 2vh 0 #fff, 33vw 87vh 0 #fff, 85vw 11vh 0 #fff, 93vw 76vh 0 #fff, 56vw 22vh 0 #fff, 1vw 69vh 0 #fff, 54vw 84vh 0 #fff, 30vw 6vh 0 #fff, 45vw 45vh 0 #fff, 65vw 28vh 0 #fff, 7vw 44vh 0 #fff, 40vw 45vh 0 #fff, 83vw 32vh 0 #fff, 98vw 16vh 0 #fff, 71vw 92vh 0 #fff, 4vw 33vh 0 #fff, 8vw 74vh 0 #fff, 13vw 11vh 0 #fff, 34vw 3vh 0 #fff, 41vw 48vh 0 #fff, 97vw 63vh 0 #fff, 71vw 94vh 0 #fff, 12vw 92vh 0 #fff, 44vw 46vh 0 #fff, 18vw 37vh 0 #fff, 93vw 50vh 0 #fff, 21vw 95vh 0 #fff, 7vw 10vh 0 #fff, 86vw 97vh 0 #fff, 29vw 31vh 0 #fff, 38vw 20vh 0 #fff, 44vw 90vh 0 #fff, 46vw 25vh 0 #fff, 33vw 68vh 0 #fff, 85vw 3vh 0 #fff, 40vw 26vh 0 #fff, 94vw 81vh 0 #fff, 66vw 1vh 0 #fff, 41vw 95vh 0 #fff, 42vw 64vh 0 #fff, 5vw 70vh 0 #fff, 32vw 49vh 0 #fff, 77vw 12vh 0 #fff, 17vw 88vh 0 #fff, 79vw 31vh 0 #fff, 20vw 69vh 0 #fff, 33vw 69vh 0 #fff, 71vw 31vh 0 #fff, 69vw 31vh 0 #fff, 84vw 97vh 0 #fff, 87vw 41vh 0 #fff, 20vw 71vh 0 #fff, 92vw 40vh 0 #fff, 45vw 31vh 0 #fff, 77vw 46vh 0 #fff, 45vw 4vh 0 #fff, 23vw 21vh 0 #fff, 52vw 49vh 0 #fff, 54vw 35vh 0 #fff, 31vw 3vh 0 #fff, 89vw 64vh 0 #fff, 85vw 43vh 0 #fff, 19vw 31vh 0 #fff, 79vw 33vh 0 #fff, 23vw 16vh 0 #fff, 12vw 40vh 0 #fff, 18vw 46vh 0 #fff, 51vw 26vh 0 #fff, 40vw 61vh 0 #fff, 39vw 90vh 0 #fff, 88vw 88vh 0 #fff, 71vw 19vh 0 #fff, 93vw 9vh 0 #fff, 61vw 56vh 0 #fff, 36vw 26vh 0 #fff, 68vw 82vh 0 #fff, 99vw 81vh 0 #fff, 88vw 52vh 0 #fff; animation-duration: 300s; }
-.star-l { width: 3px; height: 3px; box-shadow: 8vw 76vh 0 #fff, 54vw 46vh 0 #fff, 11vw 82vh 0 #fff, 48vw 20vh 0 #fff, 27vw 17vh 0 #fff, 50vw 58vh 0 #fff, 81vw 95vh 0 #fff, 14vw 40vh 0 #fff, 9vw 100vh 0 #fff, 59vw 28vh 0 #fff, 69vw 55vh 0 #fff, 30vw 7vh 0 #fff, 23vw 37vh 0 #fff, 60vw 8vh 0 #fff, 84vw 43vh 0 #fff, 18vw 48vh 0 #fff, 75vw 84vh 0 #fff, 93vw 95vh 0 #fff, 97vw 86vh 0 #fff, 22vw 96vh 0 #fff, 16vw 31vh 0 #fff, 70vw 60vh 0 #fff, 80vw 49vh 0 #fff, 41vw 81vh 0 #fff, 38vw 91vh 0 #fff, 18vw 29vh 0 #fff, 30vw 33vh 0 #fff, 59vw 19vh 0 #fff, 5vw 83vh 0 #fff, 21vw 70vh 0 #fff, 79vw 99vh 0 #fff, 83vw 16vh 0 #fff, 31vw 53vh 0 #fff, 6vw 92vh 0 #fff, 47vw 41vh 0 #fff, 49vw 52vh 0 #fff, 55vw 13vh 0 #fff, 56vw 43vh 0 #fff, 36vw 8vh 0 #fff; animation-duration: 400s; }
+.geo-bg ~ * { position: relative; z-index: 1; }
 
 /* ===== 毛玻璃效果 ===== */
 .glass {
@@ -99,7 +93,7 @@ img.loaded { opacity: 1; }
     --blue-700: #1565c0; --blue-500: #1a73e8; --blue-300: #4a90d9;
     --blue-100: #bbdefb; --blue-50: #e3f2fd;
     --text-primary: #1a1a2e; --text-secondary: #5f6368; --text-light: #9aa0a6;
-    --bg-body: #f5f8fc; --bg-card: #fff; --bg-light: #e8f0fe;
+    --bg-body: #ffffff; --bg-glass: rgba(21,101,192,0.04); --bg-light: #e8f0fe;
     --radius: 8px;
 }
 
@@ -211,8 +205,9 @@ body {
     overflow: hidden; cursor: pointer;
     transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     position: relative;
-    background: var(--bg-card); border-radius: var(--radius);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06); border: 1px solid var(--blue-100);
+    background: var(--bg-glass); border-radius: var(--radius);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06); border: 1px solid rgba(21,101,192,0.25);
+    backdrop-filter: blur(8px);
 }
 .pet-card:hover {
     transform: translateY(-8px) scale(1.03);
@@ -255,6 +250,8 @@ body {
 
 .wiki-sidebar {
     width: 220px; padding: 1.25rem; position: sticky; top: 80px; flex-shrink: 0;
+    background: var(--bg-glass); border-radius: var(--radius); backdrop-filter: blur(8px);
+    border: 1px solid rgba(21,101,192,0.25);
 }
 .sidebar-title {
     font-size: 1rem; font-weight: 600; margin-bottom: 1rem;
@@ -284,7 +281,7 @@ body {
 .pet-list li:hover { background: var(--bg-light); color: var(--blue-500); transform: translateX(4px); }
 .pet-list li.active { background: var(--blue-500); color: #fff; font-weight: 600; transform: translateX(0); }
 
-.wiki-content { flex: 1; padding: 1.75rem; min-height: 400px; }
+.wiki-content { flex: 1; padding: 1.75rem; min-height: 400px; background: var(--bg-glass); border-radius: var(--radius); backdrop-filter: blur(8px); border: 1px solid rgba(21,101,192,0.25); }
 .wiki-placeholder { text-align: center; color: var(--text-light); padding: 3rem 2rem; }
 
 .wiki-detail { animation: fadeInUp 0.5s ease; }
@@ -302,7 +299,7 @@ body {
 
 .wiki-detail .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.8rem; margin: 1rem 0; }
 .wiki-detail .info-item {
-    background: var(--bg-body); padding: 0.8rem 1rem; border-radius: var(--radius); border-left: 3px solid var(--blue-300);
+    background: var(--bg-glass); padding: 0.8rem 1rem; border-radius: var(--radius); border-left: 3px solid var(--blue-300);
     animation: slideInLeft 0.4s ease both;
 }
 .wiki-detail .info-item:nth-child(2) { animation-delay: 0.1s; }
@@ -314,21 +311,25 @@ body {
     background: var(--bg-light); color: var(--blue-500); padding: 0.25rem 0.8rem; border-radius: 4px; font-size: 0.82rem; font-weight: 500;
     transition: all 0.25s ease; cursor: default;
 }
+.wiki-detail .trait-tag--danger {
+    background: var(--bg-glass); color: #d32f2f; padding: 0.25rem 0.8rem; border-radius: 4px; font-size: 0.82rem; font-weight: 500;
+    transition: all 0.25s ease; cursor: default;
+}
 .wiki-detail .trait-tag:hover { transform: translateY(-2px) scale(1.05); box-shadow: 0 2px 8px rgba(21,101,192,0.15); }
 
-.wiki-detail .tab-nav { display: flex; margin: 1.5rem 0 1rem; background: var(--bg-light); border-radius: var(--radius); padding: 3px; }
+.wiki-detail .tab-nav { display: flex; margin: 1.5rem 0 1rem; background: var(--bg-glass); border-radius: var(--radius); padding: 3px; }
 .wiki-detail .tab-btn {
     padding: 0.6rem 1.2rem; background: transparent; border: none; cursor: pointer; font-size: 0.9rem; font-weight: 500; color: var(--text-secondary); border-radius: 5px; flex: 1;
     transition: all 0.2s ease;
 }
 .wiki-detail .tab-btn:hover { color: var(--blue-500); }
-.wiki-detail .tab-btn.active { background: #fff; color: var(--blue-700); font-weight: 600; }
+.wiki-detail .tab-btn.active { background: var(--bg-glass); color: var(--blue-700); font-weight: 600; }
 .wiki-detail .tab-content { display: none; }
 .wiki-detail .tab-content.active { display: block; animation: fadeInUp 0.4s ease; }
 
 .wiki-detail .step-list { list-style: none; }
 .wiki-detail .step-item {
-    background: var(--bg-body); padding: 1rem 1.25rem; margin-bottom: 0.6rem; border-radius: var(--radius); border-left: 3px solid var(--blue-300);
+    background: var(--bg-glass); padding: 1rem 1.25rem; margin-bottom: 0.6rem; border-radius: var(--radius); border-left: 3px solid var(--blue-300);
     animation: slideInRight 0.4s ease both;
     transition: transform 0.25s, box-shadow 0.25s;
 }

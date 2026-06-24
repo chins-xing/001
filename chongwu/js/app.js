@@ -61,13 +61,6 @@ window.PetAssets = {
 
 /* ===== 动画系统 ===== */
 window.PetAnim = {
-    initStarry(container) {
-        const bg = document.createElement('div');
-        bg.className = 'starry-bg';
-        bg.innerHTML = '<div class="star-layer star-s"></div><div class="star-layer star-m"></div><div class="star-layer star-l"></div>';
-        (container || document.body).appendChild(bg);
-        return bg;
-    },
     initLazyImages() { return PetLazy.observe(); },
     _observers: [],
     _defaults: { threshold: 0.15, rootMargin: '0px 0px -40px 0px' },

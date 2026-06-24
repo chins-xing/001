@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <canvas id="geoBg" class="geo-bg"></canvas>
     <header class="header">
         <div class="container">
             <h1 class="logo">宠物百科</h1>
@@ -55,11 +56,8 @@
         </div>
     </footer>
 
-    <script>
-        document.getElementById('hamburger')?.addEventListener('click', function() {
-            document.querySelector('.header').classList.toggle('hamburger-active');
-        });
-    </script>
+    <script src="js/common.js"></script>
+    <script src="js/geo-bg.js"></script>
     <script src="js/wiki.js"></script>
 </body>
 </html>

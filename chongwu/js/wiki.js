@@ -99,7 +99,7 @@ function showWei(d) {
             <h4>注意事项：</h4><ul>${s.tips.map(t => `<li>${t}</li>`).join('')}</ul>
         </div>`).join('')}
         <h3>禁忌食物</h3>
-        <div class="traits">${d.forbidden_foods.map(f => `<span class="trait-tag" style="background:#ff6b6b">${f}</span>`).join('')}</div>`;
+        <div class="traits">${d.forbidden_foods.map(f => `<span class="trait-tag trait-tag--danger">${f}</span>`).join('')}</div>`;
 }
 
 function showXi(d) {
