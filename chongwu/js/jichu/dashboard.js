@@ -1,12 +1,5 @@
+/* ===== 数据大屏基础模块 ===== */
 let sj, chart, _charts = [];
-
-async function loadSj() {
-    try {
-        sj = await (await fetch('shu/sj.json')).json();
-    } catch (e) {
-        document.querySelector('.dashboard-grid').innerHTML = '<div class="chart-card full-width" style="text-align:center;padding:3rem"><p>数据加载失败，请刷新页面重试</p></div>';
-    }
-}
 
 function chartOpts(extra) {
     return {
@@ -84,6 +77,37 @@ function showTu() {
 
     chart = echarts.init(document.getElementById('growthChart'));
     _charts.push(chart);
+
+    const gt = sj.growth_trends;
+    const wt = echarts.init(document.getElementById('weightChart'));
+    wt.setOption(chartOpts({
+        tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: p => `${p[0].name}<br/>成年体重: ${p[0].value}kg` },
+        grid: { left: '3%', right: '4%', bottom: '3%', containLabel: true },
+        xAxis: { type: 'category', data: Object.keys(gt) },
+        yAxis: { type: 'value', name: 'kg' },
+        series: [{ name: '成年体重', type: 'bar', data: Object.values(gt).map(v => v.weight[v.weight.length - 1]),
+            itemStyle: { borderRadius: [4, 4, 0, 0], color: new echarts.graphic.LinearGradient(0,0,0,1, [{offset:0,color:'#4a90d9'},{offset:1,color:'#1565c0'}]) },
+            animationDelay: idx => idx * 100
+        }]
+    }));
+    _charts.push(wt);
+
+    const cr = echarts.init(document.getElementById('checkinRateChart'));
+    const ckData = sj.checkin_stats;
+    const avg = arr => (arr.reduce((a, b) => a + b, 0) / arr.length).toFixed(1);
+    cr.setOption(chartOpts({
+        tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: p => `${p[0].name}<br/>完成率: ${p[0].value}%` },
+        grid: { left: '3%', right: '4%', bottom: '3%', containLabel: true },
+        xAxis: { type: 'category', data: ['喂养','洗护','运动','玩耍'] },
+        yAxis: { type: 'value', name: '%', max: 100 },
+        series: [{ name: '完成率', type: 'bar', data: [avg(ckData.feeding), avg(ckData.grooming), avg(ckData.exercise), avg(ckData.play)],
+            itemStyle: { borderRadius: [4, 4, 0, 0], color: new echarts.graphic.LinearGradient(0,0,0,1, [{offset:0,color:'#64b5f6'},{offset:1,color:'#1a73e8'}]) },
+            label: { show: true, position: 'top', formatter: '{c}%', color: '#1565c0' },
+            animationDelay: idx => idx * 150
+        }]
+    }));
+    _charts.push(cr);
+
     showCz('all');
 }
 
@@ -115,8 +139,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         d.innerHTML = '<div class="app-loading-wrap"><div class="loading-dots"><span class="loading-dot"></span><span class="loading-dot"></span><span class="loading-dot"></span></div><div class="app-loading-title">数据加载中...</div></div>';
         document.body.appendChild(d);
     }
-    await loadSj();
-    if (sj) showTu();
+    try {
+        sj = await loadSj();
+        if (sj) showTu();
+    } catch (e) {
+        document.querySelector('.dashboard-grid').innerHTML = '<div class="chart-card full-width" style="text-align:center;padding:3rem"><p>数据加载失败，请刷新页面重试</p></div>';
+    }
     document.getElementById('petTypeFilter').onchange = e => showCz(e.target.value);
     const el = document.getElementById('__appLoading');
     if (el) { el.classList.add('hide'); setTimeout(() => el.remove(), 500); }

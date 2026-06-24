@@ -1,3 +1,4 @@
+/* ===== 背景模块 ===== */
 ;(function() {
     var canvas = document.getElementById('geoBg');
     if (!canvas) return;
@@ -14,10 +15,8 @@
 
     function rand(a, b) { return a + Math.random() * (b - a); }
 
-    // 蓝色系颜色
     var blues = ['#1a73e8','#4285f4','#5b9cf6','#7bb3f7','#a8c7fa','#1565c0','#1976d2','#2196f3'];
 
-    // 几何图形生成
     function createShape() {
         var type = ['circle','triangle','hexagon','diamond','rect'][Math.floor(Math.random() * 5)];
         var size = rand(30, 90);
@@ -38,7 +37,6 @@
         };
     }
 
-    // 绘制单个形状
     function drawShape(s) {
         ctx.save();
         ctx.translate(s.x, s.y);
@@ -85,15 +83,12 @@
         ctx.restore();
     }
 
-    // 移动并更新形状
     function update() {
         for (var i = 0; i < shapes.length; i++) {
             var s = shapes[i];
             s.x += s.dx;
             s.y += s.dy;
             s.rotation += s.rotSpeed;
-
-            // 越界回绕
             var margin = s.size * 2;
             if (s.x > W + margin) s.x = -margin;
             if (s.x < -margin) s.x = W + margin;
@@ -102,7 +97,6 @@
         }
     }
 
-    // 绘制所有形状
     function draw() {
         ctx.clearRect(0, 0, W, H);
         for (var i = 0; i < shapes.length; i++) {
@@ -110,14 +104,12 @@
         }
     }
 
-    // 动画循环
     function loop() {
         update();
         draw();
         requestAnimationFrame(loop);
     }
 
-    // 初始化形状
     function initShapes() {
         shapes = [];
         var count = Math.max(15, Math.floor((W * H) / 12000));
@@ -126,7 +118,6 @@
         }
     }
 
-    // 窗口缩放
     function onResize() {
         resize();
         initShapes();

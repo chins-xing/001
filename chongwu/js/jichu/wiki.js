@@ -1,15 +1,14 @@
-let chong, cur;
+/* ===== 百科页基础模块 ===== */
+let chong, cur, _allChong = [];
 
 async function load() {
     try {
-        chong = (await (await fetch('shu/chong.json')).json()).pets;
+        chong = await loadChong();
         _allChong = [...chong];
     } catch (e) {
         document.getElementById('petList').innerHTML = '<li style="color:var(--text-light)">数据加载失败</li>';
     }
 }
-
-let _allChong = [];
 
 function showList(cat) {
     const list = document.getElementById('petList');

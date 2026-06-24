@@ -31,6 +31,8 @@
 .chart-card:nth-child(3) { animation-delay: 0.15s; }
 .chart-card:nth-child(4) { animation-delay: 0.2s; }
 .chart-card:nth-child(5) { animation-delay: 0.25s; }
+.chart-card:nth-child(6) { animation-delay: 0.3s; }
+.chart-card:nth-child(7) { animation-delay: 0.35s; }
 .chart-card.full-width { grid-column: 1 / -1; }
 
 .chart-title {

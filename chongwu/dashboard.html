@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>宠物百科 - 数据大屏</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/yang/yang.css">
+    <link rel="stylesheet" href="css/beijing/beijing.css">
     <link rel="stylesheet" href="css/dashboard.css">
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
 </head>
@@ -48,6 +49,16 @@
                 <div class="health-grid" id="healthGrid"></div>
             </div>
 
+            <div class="chart-card">
+                <h3 class="chart-title">宠物体重对比</h3>
+                <div class="chart-container" id="weightChart"></div>
+            </div>
+
+            <div class="chart-card">
+                <h3 class="chart-title">打卡完成率</h3>
+                <div class="chart-container" id="checkinRateChart"></div>
+            </div>
+
             <div class="chart-card full-width">
                 <h3 class="chart-title">宠物成长趋势</h3>
                 <div class="filter-bar">
@@ -73,8 +84,11 @@
         </div>
     </footer>
 
-    <script src="js/common.js"></script>
-    <script src="js/geo-bg.js"></script>
-    <script src="js/dashboard.js"></script>
+    <script src="js/xiao/jiexi.js"></script>
+    <script src="js/xiao/caidan.js"></script>
+    <script src="js/dongxiao/dongxiao.js"></script>
+    <script src="js/beijing/beijing.js"></script>
+    <script src="js/jiexi/jiexi-sj.js"></script>
+    <script src="js/jichu/dashboard.js"></script>
 </body>
 </html>
