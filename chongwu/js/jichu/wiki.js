@@ -6,7 +6,7 @@ async function load() {
         chong = await loadChong();
         _allChong = [...chong];
     } catch (e) {
-        document.getElementById('petList').innerHTML = '<li style="color:var(--text-light)">数据加载失败</li>';
+        PetErr.show('#petList', '品种列表加载失败');
     }
 }
 
@@ -43,7 +43,7 @@ async function showDetail() {
         wei = await fr.json();
         xi = await gr.json();
     } catch (e) {
-        document.getElementById('wikiDetail').innerHTML = '<div class="wiki-placeholder"><p>详情数据加载失败</p></div>';
+        PetErr.show('#wikiDetail', '详情数据加载失败');
         return;
     }
 

@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>宠物百科 - 萌宠世界</title>
+    <title>宠物百科 - 网页介绍</title>
     <link rel="stylesheet" href="css/yang/yang.css">
     <link rel="stylesheet" href="css/beijing/beijing.css">
+    <link rel="stylesheet" href="css/jieshao/jieshao.css">
 </head>
 <body>
     <canvas id="geoBg" class="geo-bg"></canvas>
@@ -13,10 +14,10 @@
         <div class="container">
             <h1 class="logo">宠物百科</h1>
             <nav class="nav">
-                <a href="index.html" class="nav-link active">首页</a>
+                <a href="index.html" class="nav-link">首页</a>
                 <a href="wiki.html" class="nav-link">百科</a>
                 <a href="dashboard.html" class="nav-link">数据大屏</a>
-                <a href="jieshao.html" class="nav-link">网页介绍</a>
+                <a href="jieshao.html" class="nav-link active">网页介绍</a>
             </nav>
             <div class="hamburger" id="hamburger">
                 <div class="hamburger__line"></div>
@@ -26,19 +27,23 @@
         </div>
     </header>
 
-    <main class="main">
-        <div class="carousel-wrap">
-            <div class="carousel" id="carousel">
-                <div class="carousel-track" id="carouselTrack"></div>
-                <button class="carousel-btn prev-btn" id="prevBtn" aria-label="上一页">&lsaquo;</button>
-                <button class="carousel-btn next-btn" id="nextBtn" aria-label="下一页">&rsaquo;</button>
-            </div>
-            <div class="carousel-indicator" id="carouselIndicator"></div>
-        </div>
+    <main class="js-main">
+        <div class="container">
+            <div id="jsGailan"></div>
 
-        <div class="container breed-section">
-            <h2 class="section-title">宠物品种</h2>
-            <div class="pets-grid" id="petsGrid"></div>
+            <div class="js-tab-nav">
+                <button class="js-tab-btn active" data-tab="diedai">迭代历程</button>
+                <button class="js-tab-btn" data-tab="jiagou">项目架构</button>
+                <button class="js-tab-btn" data-tab="dongxiao">动效系统</button>
+                <button class="js-tab-btn" data-tab="yangshi">样式系统</button>
+                
+            </div>
+
+            <div class="js-tab-content active" id="jsTabDiedai"></div>
+            <div class="js-tab-content" id="jsTabJiagou"></div>
+            <div class="js-tab-content" id="jsTabDongxiao"></div>
+            <div class="js-tab-content" id="jsTabYangshi"></div>
+            
         </div>
     </main>
 
@@ -52,8 +57,7 @@
     <script src="js/xiao/caidan.js"></script>
     <script src="js/dongxiao/dongxiao.js"></script>
     <script src="js/beijing/beijing.js"></script>
-    <script src="js/jiexi/jiexi-chong.js"></script>
-    <script src="js/jiexi/jiexi-tu.js"></script>
-    <script src="js/jichu/index.js"></script>
+    <script src="js/jiexi/jiexi-jieshao.js"></script>
+    <script src="js/jichu/jieshao.js"></script>
 </body>
 </html>

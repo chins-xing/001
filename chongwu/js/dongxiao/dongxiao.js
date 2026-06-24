@@ -122,3 +122,18 @@ PetAnim.runEffect = function (name, el, opts) {
     const custom = this._effects[name];
     if (custom) return custom(el, opts);
 };
+
+/* ===== 统一错误提示 ===== */
+window.PetErr = {
+    show(target, msg) {
+        const el = typeof target === 'string' ? document.querySelector(target) : target;
+        if (!el) return;
+        el.innerHTML = `
+            <div class="err-card">
+                <div class="err-icon">&#9888;</div>
+                <p class="err-msg">${msg || '数据加载失败，请刷新页面重试'}</p>
+                <button class="err-btn" onclick="location.reload()">刷新页面</button>
+            </div>
+        `;
+    }
+};

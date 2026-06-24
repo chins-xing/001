@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         initLunbo();
         showKapian();
     } catch (e) {
-        document.getElementById('carouselTrack').innerHTML = '<div class="carousel-slide" style="justify-content:center;align-items:center"><p>数据加载失败，请刷新页面重试</p></div>';
+        PetErr.show('#carouselTrack', '数据加载失败，请刷新页面重试');
     }
 
     const filterEl = document.getElementById('breedFilter');

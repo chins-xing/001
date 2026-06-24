@@ -1,0 +1,305 @@
+{
+  "project": {
+    "name": "宠物百科",
+    "subtitle": "萌宠世界 - 纯前端静态网站",
+    "description": "一个纯前端静态宠物百科网站，使用 HTML、CSS、JS 和 JSON 数据文件。",
+    "tech_stack": ["HTML5", "CSS3", "JavaScript", "ECharts", "Canvas", "JSON"],
+    "features": [
+      "所有页面内容来自 JSON 文件，改数据不用改代码",
+      "Canvas 画的动态背景，蓝色几何图形一直在飘",
+      "毛玻璃效果，半透明蓝色卡片",
+      "ECharts 做的数据大屏，7 张图表",
+      "手机端也能看，768px 以下自动切换汉堡菜单",
+      "图片懒加载，滚到哪加载到哪",
+      "SVG / PNG / JPG 都支持"
+    ],
+    "technical_highlights": [
+      {
+        "title": "JSON 数据驱动",
+        "desc": "页面内容全放 JSON 文件里，JS 加载 JSON 后动态生成 DOM。改内容只需要改 JSON，不用翻 HTML 代码。"
+      },
+      {
+        "title": "Canvas 动态背景",
+        "desc": "用 Canvas 画了 15 个蓝色几何图形（圆、三角、六边形、菱形、矩形），每个图形有自己的速度和方向，一直在画布上飘。用 requestAnimationFrame 驱动，跑满 60 帧。"
+      },
+      {
+        "title": "毛玻璃卡片",
+        "desc": "卡片用 backdrop-filter: blur(8px) 做毛玻璃效果，背景是半透明蓝色 rgba(21,101,192,0.04)，配合蓝色边框，所有卡片、面板、Tab 统一这个风格。"
+      },
+      {
+        "title": "模块化拆分",
+        "desc": "JS 和 CSS 按功能拆成多个文件，放在不同目录下。每个页面只加载自己需要的 JS，避免一个文件几千行不好维护。"
+      },
+      {
+        "title": "滚动动画",
+        "desc": "用 IntersectionObserver 监听元素进入视口，触发 fadeInUp、scaleIn 等动画。卡片 hover 上浮、点击涟漪这些交互也是纯 CSS 做的。"
+      },
+      {
+        "title": "ECharts 数据大屏",
+        "desc": "7 张图表：品种分布饼图、品种数量柱状图、打卡趋势折线图、成长趋势折线图、健康指标雷达图、体重对比柱状图、打卡完成率。支持按宠物类型筛选。"
+      }
+    ],
+    "pages": [
+      { "name": "首页", "desc": "宠物品种卡片列表 + 三图轮播，鼠标悬停卡片上浮，点击有涟漪反馈", "tech": "CSS Grid / CSS transition / setInterval" },
+      { "name": "百科页", "desc": "点进某个品种后，Tab 切换看基本信息、喂养指南、洗护教程、禁忌食物", "tech": "Tab 切换 / JSON 数据渲染" },
+      { "name": "数据大屏", "desc": "7 张 ECharts 图表，顶部可以按宠物类型筛选，图表跟着变", "tech": "ECharts / 图表联动" },
+      { "name": "网页介绍", "desc": "就是现在这个页面，介绍网页怎么做的", "tech": "Tab 面板 / 数据展示" }
+    ]
+  },
+  "iterations": [
+    {
+      "id": "v1",
+      "commit": "d9cf878",
+      "date": "2026-06-18",
+      "title": "搭架子 - 三个页面",
+      "summary": "先把三个页面（首页、百科、数据大屏）的 HTML 写出来，建好 CSS 变量体系，引入 ECharts，把基础数据用 JSON 存好。",
+      "focus": "页面结构",
+      "stats": "30 个文件，+1,403 行，-201 行",
+      "changes": [
+        "写好 index.html / wiki.html / dashboard.html",
+        "定义 CSS 变量，蓝色主题色",
+        "宠物卡片用 Grid 布局，4 列",
+        "ECharts 图表：饼图、柱状图、折线图、雷达图",
+        "JSON 数据文件：chong.json、tu.json、sj.json"
+      ]
+    },
+    {
+      "id": "v2",
+      "commit": "44170eb",
+      "date": "2026-06-20",
+      "title": "补数据 - 品种和图片",
+      "summary": "宠物品种从 2 个扩充到 10 个，犬、猫、兔、鼠、鸟都覆盖到。每个品种配了喂养指南和洗护教程的 JSON。图片从 SVG 换成 JPG 真实照片。",
+      "focus": "数据补充",
+      "stats": "75 个文件，+2,257 行，-612 行",
+      "changes": [
+        "新增 8 个宠物品种（布偶猫、英短、龙猫、兔子等）",
+        "喂养指南分幼年期、成年期、老年期",
+        "10 张 JPG 宠物真实照片替换 SVG",
+        "10 张 JPG 轮播图片替换 SVG",
+        "重构代码目录：ben/ → js/，yang/ → css/"
+      ]
+    },
+    {
+      "id": "v3",
+      "commit": "ac11e83",
+      "date": "2026-06-24",
+      "title": "加交互 - 动效和响应式",
+      "summary": "页面太静态了，加了轮播自动播放、卡片 hover 动效、点击涟漪、滚动入场动画。手机端加了汉堡菜单。清理了旧 SVG 和 webp 归档文件。",
+      "focus": "交互体验",
+      "stats": "27 个文件，-280 行",
+      "changes": [
+        "轮播图 4 秒自动切，支持左右按钮和指示器",
+        "卡片 hover 上浮 + 缩放",
+        "点击涟漪效果",
+        "IntersectionObserver 滚动入场动画",
+        "汉堡菜单，768px 断点",
+        "加载屏幕，三点跳动",
+        "清理 archive 旧文件"
+      ]
+    },
+    {
+      "id": "v4",
+      "commit": "d1d0ad1",
+      "date": "2026-06-24",
+      "title": "丰富内容 - 百科详情和更多图表",
+      "summary": "百科详情页之前太简单了，把喂养指南和洗护教程展示完善。数据大屏从 5 张图加到 7 张，加了宠物类型筛选。",
+      "focus": "内容展示",
+      "stats": "4 个文件，+171 行，-135 行",
+      "changes": [
+        "喂养指南分阶段展示，带步骤序号",
+        "洗护教程步骤化展示",
+        "禁忌食物红色字体警示",
+        "数据大屏加到 7 张图",
+        "宠物类型筛选联动"
+      ]
+    },
+    {
+      "id": "v5",
+      "commit": "27fa411",
+      "date": "2026-06-24",
+      "title": "做视觉 - Canvas 背景和毛玻璃",
+      "summary": "参考了网上一些公开博客，学到了 Canvas 动态背景和毛玻璃效果的实现方法。",
+      "focus": "视觉设计",
+      "stats": "10 个文件，+205 行，-116 行",
+      "changes": [
+        "Canvas 画 15 个蓝色几何图形，一直在飘",
+        "毛玻璃背景：backdrop-filter blur + 半透明蓝色",
+        "导航栏统一纯蓝色 #1565c0",
+        "文字说明区用半透明蓝色块覆盖",
+        "图片格式自适应"
+      ]
+    },
+    {
+      "id": "v6",
+      "commit": "e20a6e0",
+      "date": "2026-06-25",
+      "title": "拆模块 - 代码拆分",
+      "summary": "之前 JS 都写在一个文件里太长了，按功能拆开。提取了 PetAssets 框架统一管数据加载，动效、背景、菜单都独立成模块。删了约 200 行冗余代码。",
+      "focus": "代码拆分",
+      "stats": "17 个文件，+444 行，-402 行",
+      "changes": [
+        "JS 拆成：jiexi.js / dongxiao.js / beijing.js / 三个 jichu / 三个 jiexi / caidan.js",
+        "CSS 拆成：yang.css / beijing.css",
+        "PetAssets 框架统一加载 JSON 和图片",
+        "PetAnim / PetLoader / PetLazy 三个动效工具",
+        "删了约 200 行冗余代码"
+      ]
+    },
+    {
+      "id": "v7",
+      "commit": "d53ffb6",
+      "date": "2026-06-25",
+      "title": "整理目录 + 网页介绍页",
+      "summary": "模块文件按功能分到不同子目录，结构清楚点。加了这个网页介绍页面。",
+      "focus": "整理收尾",
+      "stats": "1 个文件，+1 行",
+      "changes": [
+        "JS 目录：jichu / dongxiao / jiexi / beijing / xiao",
+        "CSS 目录：yang / beijing",
+        "新建 jieshao.html 网页介绍页",
+        "jieshao.json 独立数据集",
+        "清理旧文件"
+      ]
+    }
+  ],
+  "architecture": {
+    "overview": "网页分四层：数据（JSON 文件）→ 解析（加载 JSON）→ 渲染（生成 DOM）→ 表现（样式和动效）。每一层只干自己的事，不互相依赖。",
+    "layers": [
+      { "name": "数据层 (shu/)", "desc": "放 JSON 数据文件和图片，跟代码分开", "items": ["chong.json", "tu.json", "sj.json", "jieshao.json", "tp/ 图片"] },
+      { "name": "解析层 (js/jiexi/)", "desc": "加载 JSON 文件，把数据读进来", "items": ["jiexi-chong.js", "jiexi-tu.js", "jiexi-sj.js", "jiexi-jieshao.js"] },
+      { "name": "渲染层 (js/jichu/)", "desc": "拿到数据后生成 HTML，配置图表", "items": ["index.js", "wiki.js", "dashboard.js", "jieshao.js"] },
+      { "name": "表现层 (css + js/dongxiao + js/beijing)", "desc": "样式、动画、背景", "items": ["yang.css", "beijing.css", "dongxiao.js", "beijing.js"] }
+    ],
+    "structure": {
+      "js": {
+        "jichu": { "desc": "页面渲染逻辑", "files": ["index.js", "wiki.js", "dashboard.js", "jieshao.js"] },
+        "dongxiao": { "desc": "动效系统", "files": ["dongxiao.js"] },
+        "jiexi": { "desc": "JSON 数据加载", "files": ["jiexi-chong.js", "jiexi-tu.js", "jiexi-sj.js", "jiexi-jieshao.js"] },
+        "beijing": { "desc": "Canvas 背景", "files": ["beijing.js"] },
+        "xiao": { "desc": "框架和菜单", "files": ["jiexi.js", "caidan.js"] }
+      },
+      "css": {
+        "yang": { "desc": "全局样式", "files": ["yang.css"] },
+        "beijing": { "desc": "背景样式", "files": ["beijing.css"] }
+      },
+      "shu": { "desc": "JSON 数据集", "files": ["chong.json", "tu.json", "sj.json", "jieshao.json"] },
+      "tp": { "desc": "图片资源", "files": ["chong/（宠物头像）", "lunbo/（轮播图）"] }
+    },
+    "data_flow": "JSON 文件 → jiexi 模块加载 → jichu 模块生成 DOM → 浏览器显示",
+    "design_patterns": [
+      "数据驱动视图：页面内容全在 JSON 里，JS 加载后动态渲染，改数据不用改代码",
+      "模块化：JS/CSS 按功能拆开，每个页面只加载自己需要的",
+      "观察者模式：IntersectionObserver 监听元素进入视口，触发动画和懒加载",
+      "发布订阅：PetAssets 框架统一管理数据加载，各模块自己订阅"
+    ],
+    "dependency_graph": "每个页面加载顺序：jiexi.js(框架) → caidan.js(菜单) → dongxiao.js(动效) → beijing.js(背景) → 对应的 jiexi-xxx.js(数据) → 对应的页面 JS(渲染)"
+  },
+  "animation": {
+    "canvas_bg": {
+      "desc": "Canvas 动态背景",
+      "tech": "Canvas 2D + requestAnimationFrame",
+      "effect": "15 个蓝色几何图形（圆、三角、六边形、菱形、矩形）在画布上一直飘，每个图形速度、方向、旋转速度都不一样",
+      "config": "15 个图形，蓝色系，透明度 0.15-0.4，60fps",
+      "implementation": "初始化时随机生成每个图形的参数，每帧遍历更新位置重绘，超出边界反弹"
+    },
+    "scroll_anim": {
+      "desc": "滚动入场动画",
+      "tech": "IntersectionObserver",
+      "effect": "元素滚到可见区域时触发动画：fadeInUp、scaleIn、slideInLeft、slideInRight",
+      "config": "15% 可见触发，元素间延迟 0.08s",
+      "implementation": "遍历匹配选择器的元素，每个元素建一个 Observer，进入视口时加 CSS 动画类"
+    },
+    "loading": {
+      "desc": "加载动画",
+      "tech": "CSS keyframes + JS",
+      "effect": "数据加载时显示全屏遮罩 + 三点跳动，加载完淡出",
+      "config": "跳动 1.4s 循环，逐点延迟 0.16s",
+      "implementation": "show() 插入 DOM，hide() 加 fade-out 类后移除"
+    },
+    "lazy_load": {
+      "desc": "图片懒加载",
+      "tech": "IntersectionObserver",
+      "effect": "图片滚到视口内才加载，加载完淡入显示",
+      "config": "1% 可见就触发加载",
+      "implementation": "img 用 data-src 存真实地址，进入视口时赋值给 src"
+    },
+    "carousel": {
+      "desc": "三图轮播",
+      "tech": "CSS transform + setInterval",
+      "effect": "三张图一起显示，4 秒自动切下一组，可以点箭头或指示器手动切",
+      "config": "4 秒间隔，过渡 0.5s",
+      "implementation": "维护当前组索引，translateX 位移滑动，到边界循环"
+    },
+    "card_hover": {
+      "desc": "卡片悬浮",
+      "tech": "CSS transition",
+      "effect": "鼠标放上去卡片上浮 8px + 放大 1.03 + 阴影加深",
+      "config": "过渡 0.35s",
+      "implementation": "纯 CSS，不需要 JS"
+    },
+    "ripple": {
+      "desc": "点击涟漪",
+      "tech": "CSS keyframes",
+      "effect": "点击卡片时从点击位置扩散水波纹",
+      "config": "动画 0.6s",
+      "implementation": "点击时动态创建 span 元素，定位在点击坐标，动画结束自动移除"
+    },
+    "count_up": {
+      "desc": "数字滚动",
+      "tech": "requestAnimationFrame",
+      "effect": "百分比数字从 0 平滑滚到目标值",
+      "config": "800ms",
+      "implementation": "记录起始时间，每帧算进度，缓动函数映射当前值，更新 DOM"
+    }
+  },
+  "style_system": {
+    "design_philosophy": "蓝色为主色调，半透明毛玻璃卡片，简单干净。",
+    "color_palette": {
+      "primary": "#1565c0 (blue-700) - 导航栏、标题",
+      "secondary": "#1a73e8 (blue-500) - 按钮、链接",
+      "accent": "#4a90d9 (blue-300) - 辅助色",
+      "light": "#bbdefb (blue-100) - 标签背景",
+      "bg_glass": "rgba(21,101,192,0.04) - 毛玻璃卡片背景",
+      "text": "#1a1a2e（主文字）/ #5f6368（次要）/ #9aa0a6（辅助）"
+    },
+    "css_variables": [
+      { "name": "--blue-50", "value": "#e3f2fd", "usage": "标签背景" },
+      { "name": "--blue-100", "value": "#bbdefb", "usage": "浅色背景" },
+      { "name": "--blue-300", "value": "#4a90d9", "usage": "辅助色" },
+      { "name": "--blue-500", "value": "#1a73e8", "usage": "按钮、链接" },
+      { "name": "--blue-700", "value": "#1565c0", "usage": "导航栏、标题" },
+      { "name": "--bg-glass", "value": "rgba(21,101,192,0.04)", "usage": "毛玻璃卡片" },
+      { "name": "--text-primary", "value": "#1a1a2e", "usage": "主文字" },
+      { "name": "--text-secondary", "value": "#5f6368", "usage": "次要文字" },
+      { "name": "--text-light", "value": "#9aa0a6", "usage": "辅助文字" },
+      { "name": "--radius", "value": "8px", "usage": "全局圆角" }
+    ],
+    "ui_style": {
+      "name": "半透明蓝色毛玻璃",
+      "cards": "rgba(21,101,192,0.04) + blur(8px) + 蓝色边框",
+      "header": "纯蓝色 #1565c0 导航栏",
+      "titles": "纯蓝色 #1565c0",
+      "danger_tags": "半透明蓝底 + 红色字体 #d32f2f",
+      "buttons": "蓝色 #1a73e8，hover 加深"
+    },
+    "component_styles": [
+      { "component": "导航栏", "style": "纯蓝色背景，白色文字，sticky 吸顶" },
+      { "component": "宠物卡片", "style": "毛玻璃背景，hover 上浮，头像蓝色边框，点击涟漪" },
+      { "component": "轮播图", "style": "三图并排，左右箭头，底部指示器圆点" },
+      { "component": "Tab 面板", "style": "毛玻璃按钮组，选中蓝色填充，内容区动画切换" },
+      { "component": "大屏卡片", "style": "毛玻璃背景，内嵌 ECharts 图表" },
+      { "component": "页脚", "style": "深色背景 #1a1a2e，白色文字" }
+    ],
+    "layout": {
+      "max_width": "1200px 居中",
+      "grid": "4 列 Grid（平板 2 列，手机 1 列）",
+      "responsive": "768px 汉堡菜单，480px 进一步简化",
+      "spacing": "0.5rem / 1rem / 1.5rem / 2rem / 3rem"
+    },
+    "typography": {
+      "font_family": "系统默认中文字体栈",
+      "size_scale": "标题 2rem / 卡片标题 1.25rem / 正文 1rem / 辅助 0.85rem",
+      "line_height": "正文 1.6，标题 1.3"
+    }
+  }
+}

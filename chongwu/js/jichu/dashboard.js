@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         sj = await loadSj();
         if (sj) showTu();
     } catch (e) {
-        document.querySelector('.dashboard-grid').innerHTML = '<div class="chart-card full-width" style="text-align:center;padding:3rem"><p>数据加载失败，请刷新页面重试</p></div>';
+        PetErr.show('.dashboard-grid', '数据加载失败，请刷新页面重试');
     }
     document.getElementById('petTypeFilter').onchange = e => showCz(e.target.value);
     const el = document.getElementById('__appLoading');
