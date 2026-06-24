@@ -24,17 +24,16 @@
     </header>
 
     <main class="main">
-        <div class="container">
-            <h2 class="section-title section-title--white">萌宠图集</h2>
+        <div class="carousel-wrap">
             <div class="carousel" id="carousel">
                 <div class="carousel-track" id="carouselTrack"></div>
-                <button class="carousel-btn prev-btn" id="prevBtn">&lt;</button>
-                <button class="carousel-btn next-btn" id="nextBtn">&gt;</button>
-                <div class="carousel-dots" id="carouselDots"></div>
+                <button class="carousel-btn prev-btn" id="prevBtn" aria-label="上一页">&lsaquo;</button>
+                <button class="carousel-btn next-btn" id="nextBtn" aria-label="下一页">&rsaquo;</button>
             </div>
+            <div class="carousel-indicator" id="carouselIndicator"></div>
         </div>
 
-        <div class="container">
+        <div class="container breed-section">
             <h2 class="section-title">宠物品种</h2>
             <div class="pets-grid" id="petsGrid"></div>
         </div>

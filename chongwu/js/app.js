@@ -191,8 +191,60 @@ PetAnim.runEffect = function (name, el, opts) {
     if (custom) return custom(el, opts);
 };
 
-let chong, tu, idx = 0;
-let _autoTimer = null;
+let chong, tu, _lunboIdx = 0, _lunboTimer = null;
+
+function initLunbo() {
+    if (!tu || tu.length === 0) return;
+    const items = [...tu, ...tu, ...tu];
+    document.getElementById('carouselTrack').innerHTML = items.map((item, i) => `
+        <div class="carousel-slide" data-idx="${i}" onclick="location.href='wiki.html?pet=${item.pet_id}'">
+            <div class="carousel-slide-bg" style="background-image:url('${item.image}')"></div>
+            <span class="carousel-tag">${item.title}</span>
+        </div>
+    `).join('');
+
+    const total = tu.length;
+    _lunboIdx = total;
+
+    const indicator = document.getElementById('carouselIndicator');
+    indicator.innerHTML = tu.map((_, i) =>
+        `<span class="c-indicator-dot ${i === 0 ? 'active' : ''}" data-index="${i}"></span>`
+    ).join('');
+
+    const up = (instant) => {
+        const track = document.getElementById('carouselTrack');
+        track.style.transition = instant ? 'none' : 'transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94)';
+        track.style.transform = `translateX(-${_lunboIdx * (100 / 3)}%)`;
+
+        const idx = ((_lunboIdx % total) + total) % total;
+        document.querySelectorAll('.c-indicator-dot').forEach((dot, i) => dot.classList.toggle('active', i === idx));
+
+        if (_lunboIdx >= total * 2) {
+            setTimeout(() => { _lunboIdx = _lunboIdx % total + total; up(true); }, 500);
+        } else if (_lunboIdx < total) {
+            setTimeout(() => { _lunboIdx = _lunboIdx % total + total; up(true); }, 500);
+        }
+    };
+
+    if (_lunboTimer) clearInterval(_lunboTimer);
+    _lunboTimer = setInterval(() => { _lunboIdx++; up(); }, 4000);
+
+    document.getElementById('prevBtn').onclick = () => { _lunboIdx--; up(); clearInterval(_lunboTimer); _lunboTimer = setInterval(() => { _lunboIdx++; up(); }, 4000); };
+    document.getElementById('nextBtn').onclick = () => { _lunboIdx++; up(); clearInterval(_lunboTimer); _lunboTimer = setInterval(() => { _lunboIdx++; up(); }, 4000); };
+    indicator.onclick = e => {
+        const dot = e.target.closest('.c-indicator-dot');
+        if (!dot) return;
+        const target = +dot.dataset.index;
+        const diff = target - (_lunboIdx % total);
+        _lunboIdx += diff;
+        up();
+        clearInterval(_lunboTimer);
+        _lunboTimer = setInterval(() => { _lunboIdx++; up(); }, 4000);
+    };
+
+    up(true);
+}
+
 async function load() {
     try {
         const [r1, r2] = await Promise.all([
@@ -216,55 +268,10 @@ PetAssets.regSource('jsonp', ({ url, cb }) => {
     });
 });
 
-function initLunbo(mode = 'slide') {
-    if (!tu || tu.length === 0) return;
-    document.getElementById('carouselTrack').innerHTML = tu.map(item => `
-        <div class="carousel-slide" data-bg="${item.image}">
-            <div><h3>${item.title}</h3>${item.description ? `<p>${item.description}</p>` : ''}</div>
-        </div>
-    `).join('');
-
-    document.querySelectorAll('.carousel-slide').forEach(el => {
-        el.style.backgroundImage = `url('${el.dataset.bg}')`;
-    });
-
-    document.getElementById('carouselDots').innerHTML = tu.map((_, i) =>
-        `<span class="carousel-dot ${i===0?'active':''}" data-index="${i}"></span>`
-    ).join('');
-
-    const up = () => {
-        const track = document.getElementById('carouselTrack');
-        const slides = document.querySelectorAll('.carousel-slide');
-        if (mode === 'fade') {
-            slides.forEach((s, i) => {
-                s.style.transition = 'opacity 0.6s ease';
-                s.style.opacity = i === idx ? '1' : '0';
-                s.style.position = 'absolute';
-                s.style.inset = '0';
-            });
-            track.style.transform = 'none';
-        } else {
-            track.style.transform = `translateX(-${idx * 100}%)`;
-            slides.forEach(s => { s.style.opacity = '1'; s.style.position = ''; });
-        }
-        document.querySelectorAll('.carousel-dot').forEach((dot, i) => dot.classList.toggle('active', i === idx));
-    };
-
-    if (_autoTimer) clearInterval(_autoTimer);
-    _autoTimer = setInterval(() => { idx = (idx + 1) % tu.length; up(); }, 3000);
-
-    document.getElementById('prevBtn').onclick = () => { idx = (idx - 1 + tu.length) % tu.length; up(); };
-    document.getElementById('nextBtn').onclick = () => { idx = (idx + 1) % tu.length; up(); };
-    document.getElementById('carouselDots').onclick = e => {
-        if (e.target.classList.contains('carousel-dot')) { idx = +e.target.dataset.index; up(); }
-    };
-
-    up();
-}
-
-function showKapian() {
+function showKapian(cat) {
     const grid = document.getElementById('petsGrid');
-    grid.innerHTML = chong.map((p, i) => {
+    const filtered = cat && cat !== 'all' ? chong.filter(p => p.category === cat) : chong;
+    grid.innerHTML = filtered.map((p, i) => {
         const fn = p.avatar || 'mr.svg';
         return `<div class="pet-card" data-pet-id="${p.id}" data-anim="fade-up" style="animation-delay:${i * 0.08}s">
             <div class="pet-avatar" style="background-image:url('tp/chong/${fn}')"></div>
@@ -289,6 +296,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     await load();
     initLunbo();
     showKapian();
+
+    const filterEl = document.getElementById('breedFilter');
+    if (filterEl) {
+        filterEl.onclick = e => {
+            const btn = e.target.closest('.filter-btn');
+            if (!btn) return;
+            filterEl.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            showKapian(btn.dataset.cat);
+        };
+    }
     PetAnim.initLazyImages();
     PetLoader.hide();
 });

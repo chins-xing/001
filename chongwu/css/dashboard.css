@@ -16,8 +16,7 @@
 
 body {
     font-family: -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-    background: linear-gradient(180deg, var(--blue-700) 0%, var(--blue-700) 33vh, #fff 33vh);
-    color: var(--text-primary); line-height: 1.6;
+    background: var(--bg-body); color: var(--text-primary); line-height: 1.6;
     animation: fadeIn 0.5s ease;
 }
 
@@ -61,11 +60,12 @@ body {
 
 .chart-card {
     background: var(--bg-card); border-radius: var(--radius); padding: 1.25rem;
-    border: 1px solid rgba(26,115,232,0.06);
+    border: 1px solid var(--blue-100);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
     animation: fadeInUp 0.5s ease both;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.chart-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(21,101,192,0.08); }
+.chart-card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(21,101,192,0.06); }
 .chart-card:nth-child(1) { animation-delay: 0.05s; }
 .chart-card:nth-child(2) { animation-delay: 0.1s; }
 .chart-card:nth-child(3) { animation-delay: 0.15s; }
