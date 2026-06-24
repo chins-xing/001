@@ -75,7 +75,7 @@
         "新增 8 个宠物品种（布偶猫、英短、龙猫、兔子等）",
         "喂养指南分幼年期、成年期、老年期",
         "10 张 JPG 宠物真实照片替换 SVG",
-        "10 张 JPG 轮播图片替换 SVG",
+        "6 张轮播图片替换 SVG",
         "重构代码目录：ben/ → js/，yang/ → css/"
       ]
     },
@@ -118,7 +118,7 @@
       "commit": "27fa411",
       "date": "2026-06-24",
       "title": "做视觉 - Canvas 背景和毛玻璃",
-      "summary": "参考了网上一些公开博客，学到了 Canvas 动态背景和毛玻璃效果的实现方法。",
+      "summary": "参考了网上一些公开博客，使用了 Canvas 动态背景和毛玻璃效果的实现方法。",
       "focus": "视觉设计",
       "stats": "10 个文件，+205 行，-116 行",
       "changes": [
@@ -149,15 +149,29 @@
       "id": "v7",
       "commit": "d53ffb6",
       "date": "2026-06-25",
+      "title": "补充配置 - 添加 .gitignore",
+      "summary": "添加 .gitignore 排除 .vscode 目录，避免 IDE 配置文件被 Git 跟踪。",
+      "focus": "配置补充",
+      "stats": "1 个文件，+1 行",
+      "changes": [
+        "添加 .gitignore 文件",
+        "排除 .vscode/ 目录"
+      ]
+    },
+    {
+      "id": "v8",
+      "commit": "c4460f7",
+      "date": "2026-06-25",
       "title": "整理目录 + 网页介绍页",
       "summary": "模块文件按功能分到不同子目录，结构清楚点。加了这个网页介绍页面。",
       "focus": "整理收尾",
-      "stats": "1 个文件，+1 行",
+      "stats": "13 个文件，+774 行，-4 行",
       "changes": [
         "JS 目录：jichu / dongxiao / jiexi / beijing / xiao",
-        "CSS 目录：yang / beijing",
+        "CSS 目录：yang / beijing / jieshao",
         "新建 jieshao.html 网页介绍页",
         "jieshao.json 独立数据集",
+        "jieshao.css 介绍页专属样式",
         "清理旧文件"
       ]
     }
@@ -180,9 +194,10 @@
       },
       "css": {
         "yang": { "desc": "全局样式", "files": ["yang.css"] },
-        "beijing": { "desc": "背景样式", "files": ["beijing.css"] }
+        "beijing": { "desc": "背景样式", "files": ["beijing.css"] },
+        "jieshao": { "desc": "介绍页样式", "files": ["jieshao.css"] }
       },
-      "shu": { "desc": "JSON 数据集", "files": ["chong.json", "tu.json", "sj.json", "jieshao.json"] },
+      "shu": { "desc": "JSON 数据集", "files": ["chong.json", "tu.json", "sj.json", "jieshao.json", "wei/（喂养指南）", "xi/（洗护教程）"] },
       "tp": { "desc": "图片资源", "files": ["chong/（宠物头像）", "lunbo/（轮播图）"] }
     },
     "data_flow": "JSON 文件 → jiexi 模块加载 → jichu 模块生成 DOM → 浏览器显示",
